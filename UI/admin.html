@@ -26,4 +26,151 @@
                   <div class="d-flex justify-content-end">
                     <button type="button" class="btn btn-blue create-meetup-btn" id="createMeetupBtn">Create Meetup</button>
                   </div>
-          
+                  <div class="table-div">
+                        <table id="#">
+                          <thead>
+                            <tr>
+                              <th>S/N</th>
+                              <th>Meetup ID</th>
+                              <th>Meetup Name</th>
+                              <th>Meetup Topic</th>
+                              <th>Location</th>
+                              <th>Created On</th>
+                              <th>To Date</th>
+                              <th>Questions</th>
+                              <!-- <th>Downvotes</th> -->
+                              <th>Tags</th>
+                              <th>Action</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>1</td>
+                              <td>ANDE12LAKE6NYA</td>
+                              <td>Andela PAC</td>
+                              <td>Full Stack DEvelopment</td>
+                              <td>Andela Campus</td>
+                              <td>7/01/2019</td>
+                              <td>25/01/2019</td>
+                              <!-- <td class="text-center">112</td> -->
+                              <td class="text-center">30</td>
+                              <td>
+                                <div class="tag tech">
+                                  IT & Telecoms
+                                </div>
+                              </td>
+                              <td>
+                                <div class="dropdown">
+                                  <button class="dropbtn btn">More...</button>
+                                  <div class="dropdown-content">
+                                    <a href="#" id="addImageBtn">Add Image</a>
+                                    <a href="#" id="addTagBtn">Add Tag</a>
+                                    <a href="#" id="deleteMeetupBtn">Delete</a>
+                                  </div>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>2</td>
+                              <td>ANDELA392HD</td>
+                              <td>Node Foundations</td>
+                              <td>Node js Masterclass</td>
+                              <td>Andela PAC</td>
+                              <td>01/01/2019</td>
+                              <td>15/01/2019</td>
+                              <!-- <td class="text-center">101</td> -->
+                              <td class="text-center">43</td>
+                              <td>
+                                <div class="tag health">
+                                  Technology
+                                </div>
+                              </td>
+                              <td>
+                                <div class="dropdown">
+                                  <button class="dropbtn btn">More...</button>
+                                  <div class="dropdown-content">
+                                    <a href="#" id="addImageBtn">Add Image</a>
+                                    <a href="#" id="addTagBtn">Add Tag</a>
+                                    <a href="#" id="deleteMeetupBtn">Delete</a>
+                                  </div>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+            
+                  <!-- modals -->
+                  <div id="deleteMeetupModal" class="modal">
+              
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <span class="close" id="close-1">&times;</span>
+                        <h2>&nbsp;</h2>
+                      </div>
+                      <div class="modal-body">
+                        <p>Are you sure you want to delete this meetup?</p>
+                      </div>
+                      <div class="modal-footer d-flex justify-content-between">
+                        <button type="button" class="btn btn-red">Cancel</button>
+                        <button type="button" class="btn btn-blue">Delete</button>
+                      </div>
+                    </div>
+              
+                  </div>
+              
+                  <div id="addTagModal" class="modal">
+              
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <span class="close"  id="close-2" >&times;</span>
+                        <h2>&nbsp;</h2>
+                      </div>
+                      <div class="modal-body">
+                        <p>Choose Tag</p>
+                        <select class="" name="">
+                          <option value="">Technology</option>
+                          <option value="">Agriculture</option>
+                          <option value="">Health</option>
+                        </select>
+                      </div>
+                      <div class="modal-footer d-flex justify-content-between">
+                        <button type="button" class="btn btn-red">Cancel</button>
+                        <button type="button" class="btn btn-blue">Add</button>
+                      </div>
+                    </div>
+              
+                  </div>
+              
+                  <div id="addImageModal" class="modal">
+              
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <span class="close" id="close-3" >&times;</span>
+                        <h2>&nbsp;</h2>
+                      </div>
+                      <div class="modal-body">
+                        <label for="meetupImage">Choose Image</label>
+                        <input type="file" name="meetupImage" value="" id="meetupImage" hidden>
+                      </div>
+                      <div class="modal-footer d-flex justify-content-between">
+                        <button type="button" class="btn btn-red">Cancel</button>
+                        <button type="button" class="btn btn-blue">Add</button>
+                      </div>
+                    </div>
+              
+                  </div>
+              
+                  <div id="createMeetupModal" class="modal">
+              
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <span class="close" id="close-4" >&times;</span>
+                        <h2>&nbsp;</h2>
+                      </div>          
