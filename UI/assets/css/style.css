@@ -1,0 +1,259 @@
+/** General Styling **/
+.auth-content{
+  height: 90vh;
+}
+
+.content .auth .card,
+.content .auth-signup .card{
+  min-width: 300px;
+  max-width: 650px;
+  min-height: 200px;
+  background-color: #FFFFFF;
+  box-shadow:  1px 2px 4px #c4c4c4;
+}
+
+.content .auth .card p,
+.content .auth-signup .card p{
+  margin: 10px 0px;
+}
+
+.content .auth-signup .card form .input-grid{
+  display: grid;
+  grid-gap: 15px;
+  grid-template-columns: auto auto;
+  padding: 0px;
+}
+.content .auth-signup .card form .input-grid .input-div{
+  padding: 0px;
+  height:50px;
+  font-size: 30px;
+  text-align: center;
+}
+.content .auth .card form .input-div{
+  margin: 20px 0px 15px 0px;
+}
+.content .auth-signup .card form .btn{
+  margin: 15px 0px 15px 0px;
+}
+.content .card form .btn i{
+  margin: 1% 0% 0% 2%;
+}
+
+/* Admin dashboard */
+
+table{
+  width: 100%;
+  overflow-x: scroll;
+  background: white;
+  border: 1px solid black!important;
+  margin: 20px 0!important;
+}
+table, table th, table td {
+  border-bottom: 1px solid black;
+    border-collapse: collapse;
+}
+table th, table td {
+    padding: 5px;
+}
+table th {
+    text-align: left;
+}
+
+
+/*  */
+table#profile-table{
+  width: 400px;
+  overflow-x: scroll;
+  background: white;
+  border: none!important;
+  margin: 20px 0!important;
+  box-shadow:  1px 2px 4px #c4c4c4;
+
+}
+table#profile-table, table#profile-table th, table#profile-table td {
+  border-bottom: none!important;
+  border-collapse: collapse;
+}
+table#profile-table th, table#profile-table td {
+    padding: 15px;
+}
+table#profile-table th {
+  border-bottom: 1px solid black!important;
+  text-align: left;
+}
+/*  */
+
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 2px 10px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+.dropbtn.btn{
+  height: 30px;
+}
+
+#addTagModal .modal-body select{
+  margin-top: 15px;
+}
+#meetupImage{
+  border:none;
+  color: #828282;
+  padding-left: 0px!important;
+  margin-top: 15px;
+}
+
+.create-meetup-btn{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.create-meetup-form form .input-grid{
+  display: grid;
+  grid-gap: 15px;
+  grid-template-columns: auto auto;
+  padding: 0px;
+}
+.create-meetup-form form .input-grid .input-div{
+  padding: 0px;
+  height:50px;
+  font-size: 30px;
+  text-align: center;
+}
+
+label{
+  cursor:pointer;
+}
+
+/* stikcy nav */
+
+.sticky-nav{
+  background-color: #ffffff;
+  border-bottom: 1px solid #c4c4c4;
+  margin-bottom: 20px!important;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+  height: 10vh;
+}
+.sticky-nav nav{
+  width: 60%;
+  height: 100%;
+}
+.sticky-nav nav ul {
+  width: 100%;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+  /* background-color: #333; */
+
+}
+
+.sticky-nav nav ul li {
+  height: 100%;
+  float: left;
+  width: 25%;
+}
+
+.sticky-nav nav ul li a {
+    display: block;
+    color:#333;
+    text-align: center;
+    padding: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    height: 100%;
+}
+
+.sticky-nav nav ul li a:hover {
+    background-color: #00AEFF;
+    color: white;
+}
+.sticky-nav nav ul li .active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+  .auth-content{
+    height: 100%;
+    padding: 5% 0%;
+  }
+  .table-div{
+    padding: 5px 0px 100px;
+    overflow-y: visible;
+    max-width: 100vw!important;
+    overflow-x: scroll;
+  }
+  .content.signup{
+    padding: 100px 0px;
+  }
+  .create-meetup-form form .input-grid{
+    grid-template-columns: auto;
+  }
+  .content .auth-signup .card form .input-grid{
+    grid-template-columns: auto;
+  }
+  .sticky-nav nav{
+    width: 100%;
+  }
+  .sticky-nav nav ul li a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+  }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .table-div{
+    padding: 5px 0px 100px;
+    overflow-y: visible;
+    max-width: 100vw!important;
+    overflow-x: scroll;
+  }
+  .sticky-nav nav{
+    width: 100%;
+  }
+  .sticky-nav nav ul li a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+  }
+}
+
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .table-div{
+    padding: 5px 0px 100px;
+    overflow-y: visible;
+    max-width: 100vw!important;
+    overflow-x: scroll;
+  }
+  .sticky-nav nav{
+    width: 75%;
+  }
+  .sticky-nav nav ul li a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+}

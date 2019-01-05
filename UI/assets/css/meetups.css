@@ -1,0 +1,359 @@
+/** Style for meetups**/
+.meetups-title-div{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2%;
+  font-size: 18px;
+  color: #00AEFF;
+}
+.meetup-div{
+  margin-top: 20px;
+  min-height: 160px;
+  background-color: #FFFFFF;
+  padding: 0;
+  display: flex;
+  padding: 10px 10px 0 10px;
+}
+.meetup-div:hover{
+  box-shadow:  1px 2px 4px #c4c4c4;
+}
+.meetup-div .main-content{
+  display: flex;
+}
+.meetup-div .main-content .details{
+  padding: 10px;
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+}
+.meetup-div .main-content .details .top{
+  display: flex;
+  justify-content: space-between;
+}
+.meetup-div .main-content .details .top .right{
+  width: 35%;
+  text-align: right;
+}
+.meetup-div .main-content .details .tags{
+  margin-top: auto;
+}
+.meetup-div .main-content .details .tags .tag,
+.single-meetup-card .card-body .tags .tag{
+  margin: 0px 5px;
+}
+.meetup-div .main-content .details .tags .questions,
+.single-meetup-card .card-body .tags .questions{
+  margin: 0px 5px;
+}
+
+.single-meetup-card .card-body .tags{
+  margin-top:10px;
+}
+.meetup-div .meetup-image{
+  height: 120px;
+  width: 150px;
+  margin-top: 10px;;
+}
+
+
+/* Single meetup */
+.single-meetup-div{
+  margin-top: 20px;
+  margin-bottom: 20px!important;
+  padding-bottom: 20px!important;
+  width: 100%;
+  height: 100%;
+  /* min-height: 160px; */
+  /* background-color: #FFFFFF; */
+  display: flex;
+  justify-content: center;
+}
+.single-meetup-card{
+  margin-top: 20px;
+  width: 55%;
+  /* min-height: 100%; */
+  /* height: 700px; */
+  background-color: #FFFFFF;
+  box-shadow:  1px 2px 4px #c4c4c4;
+  display: flex;
+  justify-content: center;
+  /* overflow-x: hidden; */
+}
+.single-meetup-card .card-header{
+  /* width: 95.5%; */
+  display: flex;
+  justify-content: space-between;
+  /* background: red; */
+  padding: 20px;
+}
+.single-meetup-card .card-body{
+  /* width: 100%; */
+  padding: 20px!important;
+}
+.single-meetup-card .card-body .meetup-image{
+  width: 600px;
+  height: 400px;
+  margin-bottom: 20px;
+}
+.single-meetup-card .card-footer{
+  /* width: 100%; */
+  height: 50px;
+  /* background: red; */
+  padding: 10px 20px 0px 20px ;
+  border-top: 1px solid #C4C4C4;
+}
+.fa-question-circle {
+  color: #FF0000;
+}
+.fa-calendar-check:hover,
+.fa-caret-up:hover {
+  color: #00AEFF;
+}
+
+.fa-caret-down:hover {
+  color: #FF0000;
+}
+
+
+/* questions */
+.question-card{
+  height: 100%;
+  background-color: #FFFFFF;
+  box-shadow:  1px 2px 4px #c4c4c4;
+  margin: 20px auto;
+}
+.question-card .card-header{
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px
+}
+.question-card .card-header .profile-image{
+  height: 40px;
+  width: 40px;
+  border-radius: 100%;
+  margin-right: 10px;
+}
+.question-card .card-body{
+  padding: 5px 60px;
+  height: 100%;
+}
+.question-card .card-footer{
+  /* background: green; */
+  height: 40px;
+  border-bottom: 1px solid #C4C4C4;
+  border-top: 1px solid #C4C4C4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 60px;
+}
+.question-card .card-footer .btn{
+  height: 100%;
+  margin-right: 15%;
+}
+
+.question-card .card-footer .up-vote-amount,
+.question-card .card-footer .down-vote-amount,
+.question-card .card-footer .amount{
+  margin-top: 5px;
+}
+
+.ask-question-div{
+  padding: 10px;
+  width: 55%;
+  box-shadow:  1px 2px 4px #c4c4c4;
+}
+.ask-question-div textarea{
+  resize: none;
+  margin-bottom: 10px;
+}
+.question-div{
+  margin-bottom: 100px!important;
+}
+.question-div .content{
+  width: 55%;
+}
+.comment-div{
+  padding: 10px 10px 10px 60px;
+}
+.comment-div textarea{
+  resize: none;
+  margin-bottom: 10px;
+}
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+  .meetups-title-div{
+    display: block;
+  }
+  .meetups-title-div p{
+    margin-top: 2%;
+  }
+  .meetup-div{
+    margin-top: 20px;
+    min-height: 430px!important;
+    height: 100%!important;
+    /* height: 100%; */
+    padding: 10px 30px 30px 10px;
+    /* box-shadow:  1px 2px 4px #c4c4c4; */
+  }
+  .meetup-div .main-content{
+    display: block;
+  }
+  .meetup-div .main-content .details .top{
+    display: block;
+    margin-bottom: 20px;
+  }
+  .meetup-div .main-content .details .top .right{
+    width: 100%;
+    text-align: left;
+    margin-top: 20px;
+  }
+  .meetup-div .main-content .details .top .right p:first-child{
+    display: flex;
+    margin-bottom: 5px;
+  }
+  .sm-hide{
+    display: flex;
+    margin-right: 10px;
+  }
+  .meetup-div .main-content .image-div{
+    display: flex;
+    justify-content: center;
+  }
+  .meetup-div .main-content .image-div .meetup-image{
+    margin-top: 10px;
+  }
+  .meetup-div .time-posted{
+    text-align: right;
+  }
+  .meetup-div .main-content .details .tags{
+    margin-top: auto;
+    justify-content: space-between;
+  }
+  /*  */
+  .single-meetup-card{
+    margin-top: 10px;
+    width: 90%;
+  }
+  .ask-question-div{
+    padding: 10px;
+    width: 85%;
+  }
+  .question-card{
+    margin: 20px auto;
+    width: 90%;
+  }
+  .question-div .content{
+    width: 100%;
+  }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .meetup-div{
+    margin-top: 20px;
+    min-height: 320px!important;
+    height: 100%;
+    padding: 10px 30px 30px 10px;
+    /* box-shadow:  1px 2px 4px #c4c4c4; */
+  }
+  .meetup-div .main-content{
+    display: block;
+  }
+  .meetup-div .main-content .details .top{
+    display: block;
+    margin-bottom: 20px;
+    /* justify-content: space-between; */
+  }
+  .meetup-div .main-content .details .top .right{
+    width: 100%;
+    text-align: left;
+    margin-top: 20px;
+  }
+  .meetup-div .main-content .details .top .right p:first-child{
+    display: flex;
+    margin-bottom: 5px;
+  }
+  .sm-hide{
+    display: flex;
+    margin-right: 10px;
+  }
+  .meetup-div .main-content .image-div{
+    display: flex;
+    justify-content: center;
+  }
+  .meetup-div .main-content .image-div .meetup-image{
+    margin-top: 10px;
+  }
+  .meetup-div .time-posted{
+    text-align: right;
+  }
+  .meetup-div .main-content .details .tags{
+    margin-top: auto;
+    justify-content: space-between;
+  }
+  /*  */
+  .single-meetup-card{
+    margin-top: 10px;
+    width: 90%;
+  }
+  .ask-question-div{
+    padding: 10px;
+    width: 85%;
+  }
+  .question-card{
+    margin: 20px auto;
+    width: 90%;
+  }
+  .question-div .content{
+    width: 100%;
+  }
+}
+
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .meetup-div{
+    margin-top: 20px;
+    min-height: 125px!important;
+    height: 100%;
+    padding: 10px 30px 30px 10px;
+    /* box-shadow:  1px 2px 4px #c4c4c4; */
+  }
+  .sm-hide{
+    display: none;
+  }
+  /*  */
+  .single-meetup-card{
+    margin-top: 10px;
+    width: 75%;
+  }
+  .ask-question-div{
+    padding: 10px;
+    width: 72%;
+  }
+  .question-card{
+    margin: 20px auto;
+    width: 75%;
+  }
+  .question-div .content{
+    width: 100%;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .sm-hide{
+    display: none;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .sm-hide{
+    display: none;
+  }
+}

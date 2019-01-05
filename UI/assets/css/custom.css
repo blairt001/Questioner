@@ -1,0 +1,302 @@
+/*home background color */
+body{
+  padding: 0;
+  font-family: 'Ubuntu', sans-serif;
+  margin: 0;
+  background-color: #008080;
+}
+*{
+  margin: 0;
+}
+a{
+  text-decoration: none;
+  color: inherit;
+}
+/*  */
+.font-bold{
+  font-weight: bold;
+}
+
+
+/*  */
+.btn{
+  /* width: 100%; */
+  height:40px;
+  border:none;
+  font-size: 16px;
+  padding-left: 15px;
+  padding-right: 15px;
+  cursor: pointer;
+  font-family: 'Ubuntu', sans-serif;
+  background-color: #c4c4c4;
+}
+.btn-blue{
+  background-color: #00AEFF;
+  color:#ffffff;
+}
+.btn-blue:hover{
+  /* background-color: #021FA0; */
+  color:#ffffff;
+  box-shadow: 0px 2px 6px #c4c4c4;
+}
+.btn:focus{
+  border: none;
+  outline: none;
+}
+.btn-red{
+  background-color: #FF0000;
+  color:#ffffff;
+}
+.btn-red:hover{
+  background-color: #990000;
+  color:#ffffff;
+}
+
+/*  */
+.bg-blue{
+    background-color: #800080;
+}
+.bg-red{
+    background-color: #FF0000;
+}
+.bg-white{
+    background-color: #FFFFFF;
+}
+.bg-transparent{
+    background-color: transparent;
+}
+.btn-outline-blue{
+  border: 1px solid #00AEFF;
+}
+.text-blue{
+  color:#00AEFF;
+}
+.text-white{
+  color:#FFFFFF;
+}
+.text-grey{
+  color:#797979;
+}
+.text-red{
+  color:#FF0000;
+}
+/*  */
+.d-block{
+  display: block;
+}
+.d-flex{
+  display: flex;
+}
+.d-none{
+  display: none;
+}
+.justify-content-center{
+  justify-content: center;
+}
+.justify-content-between{
+  justify-content: space-between;
+}
+.justify-content-end{
+  justify-content: flex-end;
+}
+.align-items-center{
+  align-items: center;
+}
+.text-left{
+  text-align: left;
+}
+.text-center{
+  text-align: center;
+}
+.text-right{
+  text-align: right;
+}
+
+/*  */
+.w-25{
+  width: 25%;
+}
+.w-35{
+  width: 35%;
+}
+.w-45{
+  width: 45%;
+}
+.w-50{
+  width: 50%;
+}
+.w-55{
+  width: 55%;
+}
+.w-65{
+  width: 65%;
+}
+.w-90{
+  width: 90%;
+}
+.w-100{
+  width: 100%;
+}
+.h-100{
+  height: 100%;
+}
+
+
+input{
+  height:40px;
+  border:1px solid #c4c4c4;
+  border-radius: 0px;
+  font-size: 16px;
+  line-height: 20px;
+  color: #828282;
+  padding-left: 15px!important;
+}
+input:hover{
+  border:1px solid #00AEFF;
+}
+input::placeholder{
+  font-size: 16px;
+  line-height: 20px;
+  color: #c4c4c4;
+  font-family: 'Ubuntu', sans-serif;
+}
+select{
+  width: 100%;
+  height:40px;
+  border:1px solid #c4c4c4;
+  border-radius: 0px;
+  font-size: 16px;
+  line-height: 20px;
+  color: #828282;
+  padding-left: 5px!important;
+  background-color: #FFFFFF;
+}
+select:hover{
+  border:1px solid #00AEFF;
+}
+
+/*  */
+
+.tag{
+  height: 20px;
+  width: 50px;
+  border-radius: 1.5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+}
+.tag.tech{
+  border: 2px solid #FF0000;
+  color: #FF0000;
+}
+.tag.health{
+  border: 2px solid #00AEFF;
+  color: #00AEFF;
+}
+
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    right: 0;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+
+.fas{cursor: pointer;}
+/* tooltip */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  /* border-bottom: 1px dotted black; */
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 200px;
+  background-color: #666;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  top: 120%;
+  left: 50%;
+  margin-left: -105px;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent #666 transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+/*  */
+
+.mx-3{
+  margin-left: 3%;
+  margin-right: 3%;
+}
+.mr-auto{
+  margin-right: auto;
+}
+.p-0{
+  padding: 0px;
+}
+.py-0{
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+.px-0{
+  padding-left: 0px;
+  padding-right: 0px;
+}
+.pl-0{
+  padding-left: 0px;
+}
+.pr-0{
+  padding-right: 0px;
+}
+
+
+/*  */
+.border-right{
+  border-right: 1px solid #c4c4c4;
+}
