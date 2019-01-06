@@ -50,4 +50,4 @@ Questioner is a crowd-source questions for a meetup. It helps the meetup organiz
 Andela
 
 ## Developer
-Tony Blair
+Tony Blair Okoth
