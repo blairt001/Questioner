@@ -62,12 +62,64 @@
                 <p>Question: What does Andela Two-Week Bootcamp involves?</p>
               </div>
               <div class="card-footer actions">
+                  <div class="w-45  h-100 d-flex justify-content-between align-items-center">
+                    <div class="d-flex  w-100 justify-content-center ">
+                      <button type="button" class="btn bg-transparent p-0 d-flex mr-3 up-vote-btn">
+                        <i class="fas fa-caret-up f-28 mr-3"></i>
+                      </button>
+                      <span class="up-vote-amount">70</span>
+                    </div>
+                    <div class="d-flex w-100 justify-content-center ">
+                      <button type="button" class="btn bg-transparent p-0 d-flex mr-3 down-vote-btn ">
+                        <i class="fas fa-caret-down f-28 mr-3"></i>
+                      </button>
+                      <span class="down-vote-amount">2</span>
+                    </div>
+                    <div class="d-flex w-100 justify-content-center ">
+                      <button type="button" class="btn bg-transparent p-0 d-flex mr-3 comment-btn">
+                        <i class="fas fa-comment f-24"></i>
+                      </button>
+                      <span class="amount">9</span>
+                    </div>
+      
+                  </div>
+                </div>
+                <div class="bg-white d-none comment-div">
+                    <form>
+                      <div class="d-flex justify-content-center ">
+                        <textarea class="w-100" rows="3" maxlength="150" name="question" placeholder="Type your comment here (200 characters max)"></textarea>
+                      </div>
+                      <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-blue">comment</button>
+                      </div>
+                    </form>
+                  </div>
+          </div>
+          <div class="question-card">
+            <div class="card-header details">
+              <div class="d-flex">
+                <img src="assets/images/sema.png" alt="Meetup Image" class="profile-image">
+                <div class="">
+                  <p>Tony Blair</p>
+                  <p class="f-14 text-grey">@blair</p>
+                  <p class="f-12 text-grey"><i>replying to:StackOverflow is the change ...</i></p>
+                </div>
+              </div>
+              <div class="">
+                <p class="f-14 text-grey time-posted">Asked : 6 minutes ago</p>
+              </div>
+            </div>
+            <div class="card-body question">
+              <p>Question: What should i do if one answers my question on stackoverflow?</p>
+            </div>
+            <!--User should be able to upvote or downvote a question-->
+            <div class="card-footer actions">
                 <div class="w-45  h-100 d-flex justify-content-between align-items-center">
                   <div class="d-flex  w-100 justify-content-center ">
                     <button type="button" class="btn bg-transparent p-0 d-flex mr-3 up-vote-btn">
                       <i class="fas fa-caret-up f-28 mr-3"></i>
                     </button>
-                    <span class="up-vote-amount">68</span>
+                    <span class="up-vote-amount">70</span>
                   </div>
                   <div class="d-flex w-100 justify-content-center ">
                     <button type="button" class="btn bg-transparent p-0 d-flex mr-3 down-vote-btn ">
@@ -79,73 +131,20 @@
                     <button type="button" class="btn bg-transparent p-0 d-flex mr-3 comment-btn">
                       <i class="fas fa-comment f-24"></i>
                     </button>
-                    <span class="amount">8</span>
+                    <span class="amount">9</span>
                   </div>
     
+                <!--End down vote -->
+              <div class="bg-white d-none comment-div">
+                  <form>
+                    <div class="d-flex justify-content-center ">
+                      <textarea class="w-100" rows="3" maxlength="150" name="question" placeholder="Type your comment here (200 characters max)"></textarea>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                      <button type="submit" class="btn btn-blue">comment</button>
+                    </div>
+                  </form>
                 </div>
-            </div>
-            <div class="bg-white d-none comment-div">
-              <form>
-                <div class="d-flex justify-content-center ">
-                  <textarea class="w-100" rows="3" maxlength="200" name="question" placeholder="Type your comment here (150 characters max)"></textarea>
-                </div>
-                <div class="d-flex justify-content-end">
-                  <button type="submit" class="btn btn-blue">comment</button>
-                </div>
-              </form>
-            </div>
-          </div>
-          <div class="question-card">
-            <div class="card-header details">
-              <div class="d-flex">
-                <img src="assets/images/sema.png" alt="Meetup Image" class="profile-image">
-                <div class="">
-                  <p>Tony Blair</p>
-                  <p class="f-14 text-grey">@nedy</p>
-                  <p class="f-12 text-grey"><i>replying to:Getting More Youths ...</i></p>
-                </div>
-              </div>
-              <div class="">
-                <p class="f-14 text-grey time-posted">Asked : 6 minutes ago</p>
-              </div>
-            </div>
-            <div class="card-body question">
-              <p>Question: What does Andela Two-Week Bootcamp involves?</p>
-            </div>
-            <!--User should be able to upvote or downvote a question-->
-            <div class="card-footer actions">
-              <div class="w-45  h-100 d-flex justify-content-between align-items-center">
-                <div class="d-flex  w-100 justify-content-center ">
-                  <button type="button" class="btn bg-transparent p-0 d-flex mr-3 up-vote-btn">
-                    <i class="fas fa-caret-up f-28 mr-3"></i>
-                  </button>
-                  <span class="up-vote-amount">69</span>
-                </div>
-                <div class="d-flex w-100 justify-content-center ">
-                  <button type="button" class="btn bg-transparent p-0 d-flex mr-3 down-vote-btn ">
-                    <i class="fas fa-caret-down f-28 mr-3"></i>
-                  </button>
-                  <span class="down-vote-amount">4</span>
-                </div>
-                <div class="d-flex w-100 justify-content-center ">
-                  <button type="button" class="btn bg-transparent p-0 d-flex mr-3 comment-btn">
-                    <i class="fas fa-comment f-24"></i>
-                  </button>
-                  <span class="amount">9</span>
-                </div>
-  <!--End upvote downvote-->
-              </div>
-            </div>
-            <div class="bg-white d-none comment-div">
-              <form>
-                <div class="d-flex justify-content-center ">
-                  <textarea class="w-100" rows="3" maxlength="150" name="question" placeholder="Type your comment here (150 characters max)"></textarea>
-                </div>
-                <div class="d-flex justify-content-end">
-                  <button type="submit" class="btn btn-blue">comment</button>
-                </div>
-              </form>
-            </div>
           </div>
         </div>
       </div>
