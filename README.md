@@ -40,7 +40,7 @@ Questioner is a crowd-source questions for a meetup. It helps the meetup organiz
 ```
     $ git clone https://github.com/blairt001/Questioner.git
     $ cd Questioner
-    Run index.html on the browser preferrably: **Google Chrome**
+    Run index.html on the browser preferrably: Google Chrome
 ```
  
 
