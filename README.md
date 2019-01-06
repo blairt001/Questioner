@@ -5,16 +5,16 @@ Questioner is a crowd-source questions for a meetup. It helps the meetup organiz
 > **[Questioner General UI](https://blairt001.github.io/Questioner/UI)**
 
 ## Individual UI Components
-> **[1. Home Page](https://blairt001.github.io/Questioner/UI/index.html)**
-> **[2. Sign-up Page](https://blairt001.github.io/Questioner/UI/sign-up.html)**
-> **[3. Login Page](https://blairt001.github.io/Questioner/UI/login.html)**
-> **[4. Multiple Meetups](https://blairt001.github.io/Questioner/UI/meetups.html)**
-> **[5. Single Meetup](https://blairt001.github.io/Questioner/UI/meetup.html)**
-> **[6. User Profile](https://blairt001.github.io/Questioner/UI/user-profile.html)**
-> **[7. Questions Page](https://blairt001.github.io/Questioner/UI/questions.html)**
-> **[8. Forgot Password Page](https://blairt001.github.io/Questioner/UI/forgot-pass.html)**
-> **[9. Reset Password Section](https://blairt001.github.io/Questioner/UI/pasword-reset.html)**
-> **[10. RSVP Page](https://blairt001.github.io/Questioner/UI/rsvp.html)**
+> **[1. Home Page](https://blairt001.github.io/Questioner/UI/index.html)**<br />
+> **[2. Sign-up Page](https://blairt001.github.io/Questioner/UI/sign-up.html)**<br />
+> **[3. Login Page](https://blairt001.github.io/Questioner/UI/login.html)**<br />
+> **[4. Multiple Meetups](https://blairt001.github.io/Questioner/UI/meetups.html)**<br />
+> **[5. Single Meetup](https://blairt001.github.io/Questioner/UI/meetup.html)**<br />
+> **[6. User Profile](https://blairt001.github.io/Questioner/UI/user-profile.html)**<br />
+> **[7. Questions Page](https://blairt001.github.io/Questioner/UI/questions.html)**<br />
+> **[8. Forgot Password Page](https://blairt001.github.io/Questioner/UI/forgot-pass.html)**<br />
+> **[9. Reset Password Section](https://blairt001.github.io/Questioner/UI/pasword-reset.html)**<br />
+> **[10. RSVP Page](https://blairt001.github.io/Questioner/UI/rsvp.html)**<br />
 
 
 ## Questioner Required Features
@@ -22,7 +22,7 @@ Questioner is a crowd-source questions for a meetup. It helps the meetup organiz
     - Users can create an account and log in.
     - Users can post questions to a specific meetup.
     - Users can upvote or downvote a question.
-    - Questions are sorted based on the number of upvotes a question has,      which helps the meetup organizer(s) to prioritize questions most users   are interested in.
+    - Questions are sorted based on the number of upvotes a question has.
     - Users can post comments to a specific question.
 
 ## Optional Features
