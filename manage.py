@@ -9,7 +9,6 @@ load_dotenv()
 APP_ENV = os.getenv("APP_ENV")
 app = create_app(APP_ENV)
 
-app = create_app(APP_ENV)
 manager = Manager(app)
 
 @manager.command
