@@ -3,8 +3,9 @@ Return the app after creating our function
 """
 
 from flask import Flask, Blueprint
-
+from app.api.v1.admin.routes import path_1 as meetups
 from config import app_config
+
 
 
 def create_app(app_environment):
