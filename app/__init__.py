@@ -1,9 +1,14 @@
-"""Return the app after creating the app instance """
+"""
+Return the app after creating our function
+"""
 
-from flask import Flask
+from flask import Flask, Blueprint
 
-def create_app():
-    """"""
+from config import app_config
+
+
+def create_app(app_environment):
     app = Flask(__name__)
+    app.config.from_object(app_config[app_environment])
 
     return app
