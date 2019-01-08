@@ -9,5 +9,6 @@ from config import app_config
 def create_app(app_environment):
     app = Flask(__name__)
     app.config.from_object(app_config[app_environment])
+    app.register_blueprint(meetups)
 
     return app
