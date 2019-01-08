@@ -12,7 +12,7 @@ def admin_create_meetup():
     """
     try:
         topic = request.get_json()['topic']
-        meetup_date = request.get_json()['happenningOn']
+        happenningOn = request.get_json()['happenningOn']
         location = request.get_json()['location']
         images = request.get_json()['images']
         tags = request.get_json()['tags']
@@ -24,7 +24,7 @@ def admin_create_meetup():
 
     if not topic:
         return jsonify({'status':400, 'error':'Provide the topic field'}), 400
-    if not meetup_date:
+    if not happenningOn:
         return jsonify({'status':400, 'error':'provide the meetup date'}), 400
 
     if not location:
@@ -35,7 +35,7 @@ def admin_create_meetup():
 
     meetup = MeetupModel(
         topic=topic,
-        meetup_date=meetup_date,
+        happenningOn=happenningOn,
         location=location,
         images=images,
         tags=tags
@@ -46,5 +46,5 @@ def admin_create_meetup():
     return jsonify({"status": 201,
                     "data": [{"topic": topic,
                               "location": location,
-                              "happenningOn": meetup_date,
+                              "happenningOn": happenningOn,
                               "tags": tags}]}), 201
