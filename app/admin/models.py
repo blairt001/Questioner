@@ -15,7 +15,7 @@ class MeetupModel:
         """
         self.id = len(MEETUPS_LEN)+1
         self.topic = topic
-        self.meetup_date = happenningOn
+        self.happeningOn = happenningOn
         self.location = location
         self.images = images
         self.tags = tags
@@ -35,7 +35,7 @@ class MeetupModel:
         return {
             "id": meetup.id,
             "topic": meetup.topic,
-            "happenningOn": meetup.meetup_date,
+            "happenningOn": meetup.happenningOn,
             "location": meetup.location,
             "images": meetup.images,
             "tags": meetup.tags,
