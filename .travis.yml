@@ -8,8 +8,7 @@ install:
 
 # Run tests
 script:
-    - pytest
-    - coverage run --source=api.v1 -m pytest && coverage report
-
+    - pytest --cov=app -v
+    
 after_success:
     - coveralls
