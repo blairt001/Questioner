@@ -1,6 +1,5 @@
 
 [![Build Status](https://travis-ci.org/blairt001/Questioner.svg?branch=develop)](https://travis-ci.org/blairt001/Questioner)
-
 [![Coverage Status](https://coveralls.io/repos/github/blairt001/Questioner/badge.svg?branch=develop)](https://coveralls.io/github/blairt001/Questioner?branch=develop)
 
 # Project Overview
