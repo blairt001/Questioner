@@ -18,6 +18,12 @@ class MeetupsBaseTest(unittest.TestCase):
                             "images":["blair.png", "tony.png"],
                             "tags":["Tech", "Health"]
                            }
+         self.post_meetup2 = {"topic":"Fullstack",
+                             "happenningOn":"15/02/2019",
+                             "location":"Nairobi",
+                             "images":["west.png", "east.png"],
+                             "tags":["Tech", "Health"]
+                            }
         self.meetups = []
 
 
