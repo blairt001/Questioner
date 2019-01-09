@@ -86,3 +86,9 @@ class QuestionModel:
             "votes": question.votes,
             "body": question.body,
         }
+    @staticmethod
+    def get_question(quiz_id):
+        """
+        fetch a specific question using its id
+        """
+        return [QuestionModel.to_json(question) for question in QUESTIONS_LEN if question.question_id == quiz_id]
