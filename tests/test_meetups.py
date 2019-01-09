@@ -60,3 +60,21 @@ class TestMeetupsRecords(MeetupsBaseTest):
         self.assertEqual(response.status_code, 201)
         self.assertEqual(result["status"], 201)
         self.assertEqual(result["data"], [{"location": "Thika","happenningOn": "14/02/2019","images": ["blair.png","tony.png"],"tags": ["Tech","Health"],"topic": "Scrum"}])
+
+    def test_user_get_specific_meetup_record(self):
+        """
+        Test user can get specific meetup record using the meetup id
+        """
+        self.client.post("api/v1/meetups", data = json.dumps(self.post_meetup1), content_type = "application/json")
+        self.client.post("api/v1/meetups", data = json.dumps(self.post_meetup2),  content_type = "application/json")
+
+        response = self.client.get("api/v1/meetups/1", content_type = "application/json")
+        self.assertEqual(response.status_code, 200)
+
+        result = json.loads(response.data.decode('utf-8'))
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['data'], [{"id": 1,
+                                           "location": "Thika",
+                                           "meetup_date": "14/02/2019",
+                                           "tags": ["Tech", "Health"],
+                                           "topic": "Scrum"}])
