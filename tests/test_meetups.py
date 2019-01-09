@@ -12,7 +12,7 @@ class MeetupsBaseTest(unittest.TestCase):
         self.app = create_app("testing")
         self.client = self.app.test_client()
 
-        self.post_meetup = {"topic":"Scrum",
+        self.post_meetup1 = {"topic":"Scrum",
                             "happenningOn":"14/02/2019",
                             "location":"Thika",
                             "images":["blair.png", "tony.png"],
