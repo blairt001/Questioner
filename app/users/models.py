@@ -28,7 +28,7 @@ class MeetupModel:
         MEETUPS_LEN.append(self)
 
     @staticmethod
-    def get_specific_meetup(meeting_id):
+    def get_specific_meetup_record(meeting_id):
         """
         get a specific meetup record using its meetup id
         """
