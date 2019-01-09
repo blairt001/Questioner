@@ -27,6 +27,11 @@ class QuestionBaseTest(unittest.TestCase):
                                 "question_id": 1,
                                 "title": "What is Scrum?",
                                 "votes": 1}
+        self.downvoted_question= {"body": "I would like to know the kind of food being served at the meetup",
+                                "meetup_id": 1,
+                                "question_id": 1,
+                                "title": "What is Scrum?",
+                                "votes": 1}
 class TestQuestionApiEndpoint(QuestionBaseTest):
     """
     Asserts whether the endpoints are working or not
@@ -51,6 +56,17 @@ def test_upvote_question(self):
         self.client.post("api/v1/meetups", data = json.dumps(self.meetup), content_type = "application/json")
         self.client.post("api/v1/meetups/1/questions", data = json.dumps(self.post_question1), content_type = "application/json")
         response = self.client.patch("api/v1/questions/1/upvote", content_type = "application/json")
+        self.assertEqual(response.status_code, 200)
+        result = json.loads(response.data.decode('utf-8'))
+        self.assertEqual(result['data'], self.upvoted_question)
+
+def test_downvote_question(self):
+        """
+        test for downvotes
+        """
+        self.client.post("api/v1/meetups", data = json.dumps(self.meetup), content_type = "application/json")
+        self.client.post("api/v1/meetups/1/questions", data = json.dumps(self.post_question1), content_type = "application/json")
+        response = self.client.patch("api/v1/questions/1/downvote", content_type = "application/json")
         self.assertEqual(response.status_code, 200)
         result = json.loads(response.data.decode('utf-8'))
         self.assertEqual(result['data'], self.upvoted_question)
