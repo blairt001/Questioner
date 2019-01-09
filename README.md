@@ -30,7 +30,7 @@ Questioner is a crowd-source questions for a meetup. It helps the meetup organiz
 
 # Setting up your system
 
-Install python3+ version.
+Install [python](https://www.python.org/downloads/)
 
 # Getting Started
 
@@ -69,7 +69,7 @@ python manage.py runserver
  On the terminal execute `python -m pytests`
 
 ##Testing API Endpoints:
-Use [Postman](https://learning.getpostman.com/docs/postman/launching_postman/installation_and_updates/)
+Use [Postman](https://www.getpostman.com/downloads/)
 
 ##License
 [MIT LICENSE](https://github.com/blairt001/Questioner/blob/develop/LICENSE)
