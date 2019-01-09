@@ -6,7 +6,7 @@ from datetime import datetime
 
 #assign meetups to an empty list
 MEETUPS_LEN = []
-
+QUESTIONS_LEN = []
 #create the meetup model class
 class MeetupModel:
     def __init__(self, topic, happenningOn, location, images, tags):
@@ -48,3 +48,15 @@ class MeetupModel:
             "tags": meetup.tags,
             "created_at": meetup.created_at
         }
+
+class Question:
+    def __init__(self, title, body, meetup_id):
+        """
+        The initialization of the Question class that defines its variables
+        """
+        self.question_id = len(QUESTIONS_LEN)+1
+        self.meetup_id = meetup_id
+        self.title = title
+        self.votes = 0
+        self.body = body
+        self.created_at = datetime.now()
