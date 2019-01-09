@@ -78,5 +78,5 @@ Use [Postman](https://www.getpostman.com/downloads/)
 [Andela](https://andela.com/)
 
 ## Developer
-Tony Blair Okoth
+Tony B.
 
