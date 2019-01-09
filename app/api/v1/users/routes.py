@@ -6,9 +6,8 @@ from app.api.v1 import path_1
 """
 @path_1.route("/meetups", methods=['POST'])
 def admin_create_meetup():
-    """
-    #POST a meetup : POST admin/meetups
-    """
+  
+   
     try:
         topic = request.get_json()['topic']
         happenningOn = request.get_json()['happenningOn']
