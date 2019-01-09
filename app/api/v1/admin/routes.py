@@ -47,5 +47,5 @@ def admin_create_meetup():
                     "data": [{"topic": topic,
                               "location": location,
                               "happenningOn": happenningOn,
-                              "images": images
+                              "images": images,
                               "tags": tags}]}), 201
