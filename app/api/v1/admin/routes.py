@@ -1,7 +1,6 @@
 """The meetup routes"""
 
 from flask import jsonify, request
-
 from app.admin.models import MeetupModel
 from app.api.v1 import path_1
 
