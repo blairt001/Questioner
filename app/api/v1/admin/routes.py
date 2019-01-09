@@ -5,10 +5,10 @@ from flask import jsonify, request
 from app.admin.models import MeetupModel
 from app.api.v1 import path_1
 
-@path_1.route("admin/meetups", methods=['POST'])
+@path_1.route("/meetups", methods=['POST'])
 def admin_create_meetup():
     """
-    POST a meetup : POST/meetups
+    POST a meetup : POST admin/meetups
     """
     try:
         topic = request.get_json()['topic']
