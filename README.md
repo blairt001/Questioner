@@ -68,10 +68,10 @@ python manage.py runserver
 ## Unit Testing
  On the terminal execute `python -m pytests`
 
-##Testing API Endpoints:
+## Testing API Endpoints:
 Use [Postman](https://www.getpostman.com/downloads/)
 
-##License
+## License
 [MIT LICENSE](https://github.com/blairt001/Questioner/blob/develop/LICENSE)
 
 ## Credits
