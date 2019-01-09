@@ -24,7 +24,26 @@ class MeetupsBaseTest(unittest.TestCase):
                              "images":["west.png", "east.png"],
                              "tags":["Tech", "Health"]
                             }
-        self.meetups = []
+
+        self.meetups = [{"created_at": "Wed, 09 Jan 2019 02:30:10 GMT",
+                         "id": 1,
+                         "images": ["blair.png",
+                                    "tony.png"],
+                         "location": "Thika",
+                         "happenningOn": "14/02/2019",
+                         "tags": ["Tech",
+                                  "Health"],
+                         "topic": "Scrum"},
+                        {"created_at": "Wed, 09 Jan 2019 02:30:54 GMT",
+                         "id": 2,
+                         "images": ["west.png",
+                                    "east.png"],
+                         "location": "Nairobi",
+                         "happenningOn": "15/02/2019",
+                         "tags": ["Tech", "Health"],
+                         "topic": "Fullstack"
+                        }]
+
 
 
 class TestMeetupsRecords(MeetupsBaseTest):
