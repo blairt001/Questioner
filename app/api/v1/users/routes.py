@@ -52,7 +52,7 @@ def admin_create_meetup():
 #user gets a specific meetup record
 @path_1.route("/meetups/<int:meetup_id>", methods=["GET"])
 def get_specific_meetup_record(meetup_id):
-    meetup = MeetupModel.get_specific_meetup_record(meetup_id)
+    meetup = MeetupModel.get_specific_meetup(meetup_id)
     if meetup:
         return jsonify({"status": 200, "data": meetup}), 200
     return jsonify({"status": 404, "data": "Meetup not found"}), 404
