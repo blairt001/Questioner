@@ -32,3 +32,28 @@ def create_question_record(meetup_id):
                     "data":[{"title": title,
                              "meetup": meetup_id,
                              "body": body}]}), 201
+#upvote a question
+@path_1.route("/questions/<int:question_id>/upvote", methods=['PATCH'])
+def upvote_question(question_id):
+    """
+    The upvote question route endpoint
+    """
+    question = QuestionModel.get_question(question_id)
+    if question:
+        my_question = question[0]
+        my_question['votes'] = my_question['votes'] + 1
+        return jsonify({"status": 200, "data": my_question}), 200
+    return jsonify({"status": 404, "error": "Question not found"}), 404
+
+#downvote a question
+@path_1.route("/questions/<int:question_id>/downvote", methods=['PATCH'])
+def downvote_question(question_id):
+    """
+    The upvote question route endpoint
+    """
+    question = QuestionModel.get_question(question_id)
+    if question:
+        my_question = question[0]
+        my_question['votes'] = my_question['votes'] + 1
+        return jsonify({"status": 200, "data": my_question}), 200
+    return jsonify({"status": 404, "error": "Question not found"}), 404
