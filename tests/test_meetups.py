@@ -3,15 +3,13 @@
 import os
 import unittest
 import json
-
-# local imports
+ 
 from app import create_app
-#Our meetup base test with the setup function for initializing the tests
+
 class MeetupsBaseTest(unittest.TestCase):
 
     def setUp(self):
-        APP_ENV = os.getenv("TESTING_ENV")
-        self.app = create_app(APP_ENV)
+        self.app = create_app("testing")
         self.client = self.app.test_client()
 
         self.post_meetup = {"topic":"Scrum",
