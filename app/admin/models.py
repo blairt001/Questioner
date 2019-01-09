@@ -31,7 +31,7 @@ class MeetupModel:
     #convert the meetup record to JSON format
     #let the dict be readable
     @staticmethod
-    def convert_to_json(meetup):
+    def to_json(meetup):
         return {
             "id": meetup.id,
             "topic": meetup.topic,
