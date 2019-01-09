@@ -60,3 +60,22 @@ class Question:
         self.votes = 0
         self.body = body
         self.created_at = datetime.now()
+
+    def save_question(self):
+        """
+        saves the question to the question store
+        """
+        QUESTIONS_LEN.append(self)
+
+    @staticmethod
+    def to_json(question):
+        """
+        format question object to a readable dictionary
+        """
+        return {
+            "question_id": question.question_id,
+            "title": question.title,
+            "meetup_id": question.meetup_id,
+            "votes": question.votes,
+            "body": question.body,
+        }
