@@ -1,8 +1,8 @@
 """The meetup routes"""
 
 from flask import jsonify, request
-from app.admin.models import MeetupModel
-from app.api.v1 import path_1
+from app.admin.models import MeetupModel, MEETUPS_LEN
+from app.api.v1 import path_1 
 
 @path_1.route("/meetups", methods=['POST'])
 def admin_create_meetup():

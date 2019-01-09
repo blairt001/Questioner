@@ -34,6 +34,13 @@ class MeetupModel:
         """
         return [MeetupModel.to_json(meetup) for meetup in MEETUPS_LEN if meetup.id == meeting_id]
 
+    @staticmethod
+    def get_all_upcoming_meetups():
+        """
+        gets all meetups
+        """
+        return [MeetupModel.to_json(meetup) for meetup in MEETUPS_LEN]
+
     #staticmethod decorator
     #convert the meetup record to JSON format
     #let the dict be readable
