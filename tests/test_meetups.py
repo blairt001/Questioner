@@ -15,9 +15,10 @@ class MeetupsBaseTest(unittest.TestCase):
         self.post_meetup = {"topic":"Scrum",
                             "happenningOn":"14/02/2019",
                             "location":"Thika",
-                            "images":["blair.png", "tony.png", "david.png"],
+                            "images":["blair.png", "tony.png"],
                             "tags":["Tech", "Health"]
                            }
+        self.meetups = []
 
 
 class TestMeetupsRecords(MeetupsBaseTest):
@@ -29,8 +30,8 @@ class TestMeetupsRecords(MeetupsBaseTest):
 
         """ Test for admin creating a meetup"""
 
-        response = self.client.post("api/v1/admin/MeetupModel",data = json.dumps(self.post_meetup), content_type = "application/json")
+        response = self.client.post("api/v1/meetups",data = json.dumps(self.post_meetup), content_type = "application/json")
         result = json.loads(response.data.decode('utf-8'))
         self.assertEqual(response.status_code, 201)
         self.assertEqual(result["status"], 201)
-        self.assertEqual(result["data"], [{"location": "Thika","happenningOn": "14/02/2019","tags": ["Tech","Health"],"topic": "Scrum"}])
+        self.assertEqual(result["data"], [{"location": "Thika","happenningOn": "14/02/2019","images": ["blair.png","tony.png"],"tags": ["Tech","Health"],"topic": "Scrum"}])
