@@ -49,7 +49,7 @@ class MeetupModel:
             "created_at": meetup.created_at
         }
 
-class Question:
+class QuestionModel:
     def __init__(self, title, body, meetup_id):
         """
         The initialization of the Question class that defines its variables
