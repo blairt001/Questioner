@@ -8,8 +8,9 @@ install:
     - pip install coveralls
 # Run tests
 script:
-    - pytest
+    - -m pytest
     - coverage run --source=app.api.v1 -m pytest && coverage report
+    - -m pytest --cov=app
 
 after_success:
     - coveralls
