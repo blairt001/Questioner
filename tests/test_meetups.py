@@ -25,7 +25,7 @@ class MeetupsBaseTest(unittest.TestCase):
                              "tags":["Tech", "Health"]
                             }
 
-        self.meetups = [{"created_at": "Thu, 10 Jan 2019 09:34:19 GMT",
+        self.meetups = [{"created_at": "Thu, 10 Jan 2019 10:57:08 GMT",
                          "id": 1,
                          "images": ["blair.png",
                                     "tony.png"],
@@ -34,7 +34,7 @@ class MeetupsBaseTest(unittest.TestCase):
                          "tags": ["Tech",
                                   "Health"],
                          "topic": "Scrum"},
-                        {"created_at": "Thu, 10 Jan 2019 09:35:34 GMT",
+                        {"created_at": "Thu, 10 Jan 2019 10:58:06 GMT",
                          "id": 2,
                          "images": ["west.png",
                                     "east.png"],
@@ -75,7 +75,7 @@ class TestMeetupsRecords(MeetupsBaseTest):
         self.assertEqual(result['status'], 200)
         self.assertEqual(result['data'], [{"id": 1,
                                            "location": "Thika",
-                                           "meetup_date": "14/02/2019",
+                                           "happenningOn": "14/02/2019",
                                            "tags": ["Tech", "Health"],
                                            "topic": "Scrum"}])
 
