@@ -45,7 +45,7 @@ def upvote_question(question_id):
         return jsonify({"status": 200, "data": my_question}), 200
     return jsonify({"status": 404, "error": "Question not found"}), 404
 
-#downvote a given question
+#user downvote a given question
 @path_1.route("/questions/<int:question_id>/downvote", methods=['PATCH'])
 def downvote_question(question_id):
     """
