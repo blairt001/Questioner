@@ -22,10 +22,10 @@ class QuestionBaseTest(unittest.TestCase):
 
         self.post_question1 = {"title":"What is scrum?",
                                "body":"I really like how people talk about Andela's Scrum"}
-        self.upvoted_question= {"body": "I really like how people talk about Andela's Scrum",
+        self.upvoted_question= {"body": "I really like how people talk about XYZ",
                                 "meetup_id": 1,
                                 "question_id": 1,
-                                "title": "What is Scrum?",
+                                "title": "What is   XYZ?",
                                 "votes": 1}
 class TestQuestionApiEndpoint(QuestionBaseTest):
     """
