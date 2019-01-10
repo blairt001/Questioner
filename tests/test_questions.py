@@ -44,14 +44,5 @@ class TestQuestionApiEndpoint(QuestionBaseTest):
                                            "meetup": 1,
                                            "title": "What is scrum?"}])
 
-def test_upvote_question(self):
-        """
-        test for upvotes
-        """
-        self.client.post("api/v1/meetups", data = json.dumps(self.meetup), content_type = "application/json")
-        self.client.post("api/v1/meetups/1/questions", data = json.dumps(self.post_question1), content_type = "application/json")
-        response = self.client.patch("api/v1/questions/1/upvote", content_type = "application/json")
-        self.assertEqual(response.status_code, 200)
-        result = json.loads(response.data.decode('utf-8'))
-        self.assertEqual(result['data'], self.upvoted_question)
+   
 
