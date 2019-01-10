@@ -1,7 +1,7 @@
 """The users meetup routes"""
 
 from flask import jsonify, request
-from app.users.models import QuestionModel, QUESTIONS_LEN
+from app.admin.models import QuestionModel, QUESTIONS_LEN
 from app.api.v1 import path_1
 
 @path_1.route("/meetups/<int:meetup_id>/questions", methods=['POST'])
