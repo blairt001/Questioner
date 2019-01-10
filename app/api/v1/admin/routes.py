@@ -48,3 +48,23 @@ def admin_create_meetup():
                               "happenningOn": happenningOn,
                               "images": images,
                               "tags": tags}]}), 201
+
+#user gets a specific meetup record
+@path_1.route("/meetups/<int:meetup_id>", methods=["GET"])
+def get_specific_meetup(meetup_id):
+    meetup = MeetupModel.get_specific_meetup(meetup_id)
+    if meetup:
+        return jsonify({"status": 200, "data": meetup}), 200
+    return jsonify({"status": 404, "data": "Meetup not found"}), 404
+
+#Get all upcoming meetup records
+@path_1.route("/meetups/upcoming", methods=["GET"])
+def get_all_upcoming_meetups():
+    meetups = MeetupModel.get_all_upcoming_meetups()
+
+    if meetups:
+        return jsonify({"status": 200, "data": meetups}), 200
+    return jsonify({
+        "status": 404,
+        "error": "No upcoming meetups available."
+    }), 404
