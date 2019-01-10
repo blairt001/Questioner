@@ -3,7 +3,6 @@ Return the app after creating our function
 """
 
 from flask import Flask, jsonify, Blueprint
-from app.api.v1.users.routes import path_1 as meetups
 from app.api.v1.admin.routes import path_1 as meetups
 from app.api.v1.questions.routes import path_1 as question
 
