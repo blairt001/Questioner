@@ -1,9 +1,9 @@
 """The users meetup routes"""
 
 from flask import jsonify, request
-from app.users.models import MeetupModel, MEETUPS_LEN
+from app.admin.models import MeetupModel, MEETUPS_LEN
 from app.api.v1 import path_1
-"""
+
 @path_1.route("/meetups", methods=['POST'])
 def admin_create_meetup():
   
@@ -47,10 +47,10 @@ def admin_create_meetup():
                               "happenningOn": happenningOn,
                               "images": images,
                               "tags": tags}]}), 201
-"""
+
 #user gets a specific meetup record
 @path_1.route("/meetups/<int:meetup_id>", methods=["GET"])
-def get_specific_meetup_record(meetup_id):
+def get_specific_meetup(meetup_id):
     meetup = MeetupModel.get_specific_meetup(meetup_id)
     if meetup:
         return jsonify({"status": 200, "data": meetup}), 200
@@ -58,7 +58,7 @@ def get_specific_meetup_record(meetup_id):
 
 #Get all upcoming meetup records
 @path_1.route("/meetups/upcoming", methods=["GET"])
-def get_meetups():
+def get_all_upcoming_meetups():
     meetups = MeetupModel.get_all_upcoming_meetups()
 
     if meetups:
