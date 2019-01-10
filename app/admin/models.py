@@ -16,7 +16,7 @@ class MeetupModel:
         """
         self.id = len(MEETUPS_LEN)+1
         self.topic = topic
-        self.happeningOn = happenningOn
+        self.happenningOn = happenningOn
         self.location = location
         self.images = images
         self.tags = tags

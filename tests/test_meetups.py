@@ -25,7 +25,7 @@ class MeetupsBaseTest(unittest.TestCase):
                              "tags":["Tech", "Health"]
                             }
 
-        self.meetups = [{"created_at": "Wed, 09 Jan 2019 02:30:10 GMT",
+        self.meetups = [{"created_at": "Thu, 10 Jan 2019 09:34:19 GMT",
                          "id": 1,
                          "images": ["blair.png",
                                     "tony.png"],
@@ -34,7 +34,7 @@ class MeetupsBaseTest(unittest.TestCase):
                          "tags": ["Tech",
                                   "Health"],
                          "topic": "Scrum"},
-                        {"created_at": "Wed, 09 Jan 2019 02:30:54 GMT",
+                        {"created_at": "Thu, 10 Jan 2019 09:35:34 GMT",
                          "id": 2,
                          "images": ["west.png",
                                     "east.png"],
