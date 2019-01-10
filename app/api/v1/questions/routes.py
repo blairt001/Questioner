@@ -1,7 +1,7 @@
 """The users meetup routes"""
 
 from flask import jsonify, request
-from app.users.models import QuestionModel, QUESTIONS_LEN
+from app.admin.models import QuestionModel, QUESTIONS_LEN
 from app.api.v1 import path_1
 
 @path_1.route("/meetups/<int:meetup_id>/questions", methods=['POST'])
@@ -32,7 +32,7 @@ def create_question_record(meetup_id):
                     "data":[{"title": title,
                              "meetup": meetup_id,
                              "body": body}]}), 201
-#user upvote a given question
+#upvote a question
 @path_1.route("/questions/<int:question_id>/upvote", methods=['PATCH'])
 def upvote_question(question_id):
     """
@@ -45,15 +45,15 @@ def upvote_question(question_id):
         return jsonify({"status": 200, "data": my_question}), 200
     return jsonify({"status": 404, "error": "Question not found"}), 404
 
-#user downvote a given question
+#downvote a question
 @path_1.route("/questions/<int:question_id>/downvote", methods=['PATCH'])
 def downvote_question(question_id):
     """
-    The upvote question route endpoint
+    The downvote question route endpoint
     """
     question = QuestionModel.get_question(question_id)
     if question:
         my_question = question[0]
-        my_question['votes'] = my_question['votes'] + 1
+        my_question['votes'] = my_question['votes'] - 1
         return jsonify({"status": 200, "data": my_question}), 200
     return jsonify({"status": 404, "error": "Question not found"}), 404
