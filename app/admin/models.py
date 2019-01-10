@@ -6,6 +6,7 @@ from datetime import datetime
 
 #assign meetups to an empty list
 MEETUPS_LEN = []
+QUESTIONS_LEN = []
 
 #create the meetup model class
 class MeetupModel:
@@ -55,3 +56,40 @@ class MeetupModel:
             "tags": meetup.tags,
             "created_at": meetup.created_at
         }
+
+class QuestionModel:
+    def __init__(self, title, body, meetup_id):
+        """
+        The initialization of the Question class that defines its variables
+        """
+        self.question_id = len(QUESTIONS_LEN)+1
+        self.meetup_id = meetup_id
+        self.title = title
+        self.votes = 0
+        self.body = body
+        self.created_at = datetime.now()
+
+    def save_question(self):
+        """
+        saves the question to the question store
+        """
+        QUESTIONS_LEN.append(self)
+
+    @staticmethod
+    def to_json(question):
+        """
+        format question object to a readable dictionary
+        """
+        return {
+            "question_id": question.question_id,
+            "title": question.title,
+            "meetup_id": question.meetup_id,
+            "votes": question.votes,
+            "body": question.body,
+        }
+    @staticmethod
+    def get_question(quiz_id):
+        """
+        fetch a specific question using its id
+        """
+        return [QuestionModel.to_json(question) for question in QUESTIONS_LEN if question.question_id == quiz_id]
