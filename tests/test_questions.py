@@ -22,12 +22,7 @@ class QuestionBaseTest(unittest.TestCase):
 
         self.post_question1 = {"title":"What is scrum?",
                                "body":"I really like how people talk about Andela's Scrum"}
-        self.upvoted_question= {"body": "I would like to know the kind of food being served at the meetup",
-                                "meetup_id": 1,
-                                "question_id": 1,
-                                "title": "What is Scrum?",
-                                "votes": 1}
-        self.downvoted_question= {"body": "I would like to know the kind of food being served at the meetup",
+        self.upvoted_question= {"body": "I really like how people talk about Andela's Scrum",
                                 "meetup_id": 1,
                                 "question_id": 1,
                                 "title": "What is Scrum?",
