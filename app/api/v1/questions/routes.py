@@ -32,7 +32,7 @@ def create_question_record(meetup_id):
                     "data":[{"title": title,
                              "meetup": meetup_id,
                              "body": body}]}), 201
-#upvote a given question
+#user upvote a given question
 @path_1.route("/questions/<int:question_id>/upvote", methods=['PATCH'])
 def upvote_question(question_id):
     """
