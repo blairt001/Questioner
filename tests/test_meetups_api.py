@@ -20,7 +20,9 @@ class MeetupsBaseTest(unittest.TestCase):
                             "images":["blair.png", "tony.png", "david.png"],
                             "tags":["Tech", "Health"]
                            }
-
+        self.rsvp_response1 = [{"Attending": "yes",
+                                "meetup": 1,
+                                "topic": "Scrum"}]
 
 class TestMeetupsRecords(MeetupsBaseTest):
     """
