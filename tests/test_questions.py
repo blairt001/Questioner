@@ -39,7 +39,7 @@ class QuestionBaseTest(unittest.TestCase):
                                    "title": "What is Scrum?",
                                    "votes": -1}
         #prepare comments setup
-         self.post_comment1 = {"comment":"Wow, I love every topic on scrum, the answer will help me alot"}
+        self.post_comment1 = {"comment":"Wow, I love every topic on scrum, the answer will help me alot"}
 
         self.question1_and_comment1 = {"body": "Scrum is an agile methodology of developing software products",
                                      "comments": ["Wow, I love every topic on scrum, the answer will help me alot"],
