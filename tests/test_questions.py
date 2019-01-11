@@ -90,3 +90,15 @@ class TestQuestionApiEndpoint(QuestionBaseTest):
 
         result = json.loads(response.data.decode('utf-8'))
         self.assertEqual(result['data'], self.downvoted_question)
+
+    #define test case for user posting comments
+    def test_user_comment_on_a_question(self):
+        """
+        tests that a user can actually comment on a question
+        """
+        self.client.post("api/v1/meetups", data = json.dumps(self.meetup), content_type = "application/json")
+        self.client.post("api/v1/meetups/1/questions", data = json.dumps(self.post_question1), content_type = "application/json")
+        response = self.client.post("api/v1/questions/1/comment", data = json.dumps(self.post_comment1), content_type = "application/json")
+        self.assertEqual(response.status_code, 201)
+        result = json.loads(response.data.decode("utf'8"))
+        self.assertEqual(result['data'], self.question1_and_comment1)
