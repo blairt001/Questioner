@@ -25,7 +25,7 @@ class MeetupsBaseTest(unittest.TestCase):
                              "tags":["Tech", "Health"]
                             }
 
-        self.meetups = [{"created_at": "Thu, 10 Jan 2019 10:57:08 GMT",
+        self.meetups = [{"created_at": "Wed, 09 Jan 2019 02:30:10 GMT",
                          "id": 1,
                          "images": ["blair.png",
                                     "tony.png"],
@@ -34,7 +34,7 @@ class MeetupsBaseTest(unittest.TestCase):
                          "tags": ["Tech",
                                   "Health"],
                          "topic": "Scrum"},
-                        {"created_at": "Thu, 10 Jan 2019 10:58:06 GMT",
+                        {"created_at": "Wed, 09 Jan 2019 02:30:54 GMT",
                          "id": 2,
                          "images": ["west.png",
                                     "east.png"],
@@ -60,22 +60,22 @@ class TestMeetupsRecords(MeetupsBaseTest):
         self.assertEqual(response.status_code, 201)
         self.assertEqual(result["status"], 201)
         self.assertEqual(result["data"], [{"location": "Thika","happenningOn": "14/02/2019","images": ["blair.png","tony.png"],"tags": ["Tech","Health"],"topic": "Scrum"}])
-    """
-    def test_user_get_specific_meetup_record(self):
+ 
+    def test_user_get_specific_meetup(self):
         self.client.post("api/v1/meetups", data = json.dumps(self.post_meetup1), content_type = "application/json")
         self.client.post("api/v1/meetups", data = json.dumps(self.post_meetup2),  content_type = "application/json")
 
-        response = self.client.get("api/v1/meetups/2", content_type = "application/json")
+        response = self.client.get("api/v1/meetups/1", content_type = "application/json")
         self.assertEqual(response.status_code, 200)
 
         result = json.loads(response.data.decode('utf-8'))
         self.assertEqual(result['status'], 200)
-        self.assertEqual(result['data'], [{"id": 2,
-                                           "location": "Nairobi",
-                                           "happenningOn": "15/02/2019",
+        self.assertEqual(result['data'], [{"id": 1,
+                                           "location":"Thika",
+                                           "happenningOn":"14/02/2019",
                                            "tags": ["Tech", "Health"],
-                                           "topic": "Fullstack"}])
-    """
+                                           "topic":"Scrum"}])
+    
     def test_user_can_get_all_meetups_records(self):
         """
        User to fetch all upcoming meetup records
