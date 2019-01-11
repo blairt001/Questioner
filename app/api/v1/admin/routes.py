@@ -1,6 +1,6 @@
 """The meetup routes"""
 
-from flask import jsonify, request , make_response
+from flask import jsonify, request , make_response , abort
 from app.admin.models import MeetupModel, MEETUPS_LEN
 from app.api.v1 import path_1 
 
@@ -83,3 +83,4 @@ def meetup_rsvp(meetup_id, resp):
         return jsonify({'status':200, 'data':[{'meetup':meetup_id,
                                                'topic':meetup['topic'],
                                                'Attending':resp}]}), 200
+

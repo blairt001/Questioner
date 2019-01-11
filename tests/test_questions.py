@@ -22,16 +22,34 @@ class QuestionBaseTest(unittest.TestCase):
 
         self.post_question1 = {"title":"What is Scrum?",
                                "body":"I really like how people talk about Andela's Scrum"}
+
+        self.post_question2 = {"title":"What is JWT?",
+                               "body":"I learnt more about JWT at Andela's bootcamp"}
+
         self.upvoted_question= {"body": "I really like how people talk about Andela's Scrum",
                                 "meetup_id": 1,
+                                "comments": [], #initialize comments to an empty list
                                 "question_id": 1,
                                 "title": "What is Scrum?",
                                 "votes": 1}
         self.downvoted_question = {"body": "I really like how people talk about Andela's Scrum",
                                    "meetup_id": 1,
+                                   "comments": [],  #initialize comments to an empy list
                                    "question_id": 1,
                                    "title": "What is Scrum?",
                                    "votes": -1}
+        #prepare comments setup
+        self.post_comment1 = {"comment":"Wow, I love every topic on scrum, the answer will help me alot"}
+
+        self.question1_and_comment1 = {"body": "I really like how people talk about Andela's Scrum",
+                                     "comments": ["Wow, I love every topic on scrum, the answer will help me alot"],
+                                     "meetup_id": 1,
+                                     "question_id": 1,
+                                     "title": "What is Scrum?",
+                                     "votes": 0}
+
+        
+
 class TestQuestionApiEndpoint(QuestionBaseTest):
     """
     Asserts whether the endpoints are working or not
@@ -72,3 +90,15 @@ class TestQuestionApiEndpoint(QuestionBaseTest):
 
         result = json.loads(response.data.decode('utf-8'))
         self.assertEqual(result['data'], self.downvoted_question)
+
+    #define test case for user posting comments
+    def test_user_comment_on_a_question(self):
+        """
+        tests that a user can actually comment on a question
+        """
+        self.client.post("api/v1/meetups", data = json.dumps(self.meetup), content_type = "application/json")
+        self.client.post("api/v1/meetups/1/questions", data = json.dumps(self.post_question1), content_type = "application/json")
+        response = self.client.post("api/v1/questions/1/comment", data = json.dumps(self.post_comment1), content_type = "application/json")
+        self.assertEqual(response.status_code, 201)
+        result = json.loads(response.data.decode("utf'8"))
+        self.assertEqual(result['data'], self.question1_and_comment1)
