@@ -4,9 +4,10 @@ The admin meetup model
 #import date
 from datetime import datetime
 
-#assign meetups to an empty list
+#assign meetups , questions, comments and users to an empty list
 MEETUPS_LEN = []
 QUESTIONS_LEN = []
+COMMENTS = []
 
 #create the meetup model class
 class MeetupModel:
@@ -92,3 +93,31 @@ class QuestionModel:
         fetch a specific question using its id
         """
         return [QuestionModel.to_json(question) for question in QUESTIONS_LEN if question.question_id == quiz_id]
+
+#Comment model class
+class CommentModel:
+    """
+    This is the model class for holding comment fields
+    """
+
+    def __init__(self, comment, question_id):
+        self.comment = comment
+        self.user_id = user_id
+        self.comment_id = len(COMMENTS)+1
+        self.question_id = question_id
+
+    def save_user_comment(self):
+        """
+        Save the comment to the comments store
+        """
+        COMMENTS.append(self)
+
+    
+    @staticmethod    #module level function
+    def to_json(comment):
+        """
+        Convert the comment object to json, a readable dict
+        """
+        return {"comment":comment.comment,
+                "comment_id":comment.comment_id,
+                "question_id":comment.question}
