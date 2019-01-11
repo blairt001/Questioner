@@ -93,6 +93,7 @@ class TestMeetupsRecords(MeetupsBaseTest):
         self.assertEqual(result["status"], 200)
         # self.assertEqual(result["data"], self.meetups)
     
+    #tests fo user rsvp a response
     def test_user_can_confirm_rsvp_response(self):
         """
         test user can post their attendance responses
