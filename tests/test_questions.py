@@ -105,3 +105,13 @@ class TestQuestionApiEndpoint(QuestionBaseTest):
         self.assertEqual(response.status_code, 201)
         result = json.loads(response.data.decode("utf'8"))
         self.assertEqual(result['data'], self.question1_and_comment1)
+
+    def test_get_all_questions_records(self):
+        """
+        User should be able to get all the questions records
+        """
+        self.client.post("api/v1/meetups", data = json.dumps(self.meetup), content_type = "application/json")
+        self.client.post("api/v1/meetups/1/questions", data = json.dumps(self.post_question1), content_type = "application/json")
+        self.client.post("api/v1/meetups/1/questions", data = json.dumps(self.post_question2), content_type = "application/json")
+        response = self.client.get("api/v1/meetups/1/questions", content_type = "application/json")
+        self.assertEqual(response.status_code, 200)
