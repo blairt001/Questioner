@@ -47,7 +47,10 @@ class QuestionBaseTest(unittest.TestCase):
                                      "question_id": 1,
                                      "title": "What is Scrum?",
                                      "votes": 0}
-
+    #tear down tests                                 
+    def tearDown(self):
+        """Tperform final cleanup after tests run"""
+        self.app.testing = False
         
 
 class TestQuestionApiEndpoint(QuestionBaseTest):
