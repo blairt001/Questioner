@@ -68,3 +68,18 @@ def get_all_upcoming_meetups():
         "status": 404,
         "error": "No upcoming meetups available."
     }), 404
+
+#user respond to a meetup request
+@path_1.route("/meetups/<int:meetup_id>/rsvps/<resp>", methods=['POST'])
+def meetup_rsvp(meetup_id, resp):
+    """
+    A user should be able to respond to a meetup request with yes, no or maybe
+    """
+    if resp not in ["yes", "no", "maybe"]:
+        return jsonify({'status':400, 'error':'Response must be either yes , no or maybe'}), 400
+    meetup = MeetupModel.get_meetup(meetup_id)
+    if meetup:
+        meetup = meetup[0]
+        return jsonify({'status':200, 'data':[{'meetup':meetup_id,
+                                               'topic':meetup['topic'],
+                                               'Attending':resp}]}), 200
