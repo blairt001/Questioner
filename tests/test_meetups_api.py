@@ -38,3 +38,13 @@ class TestMeetupsRecords(MeetupsBaseTest):
         self.assertEqual(response.status_code, 201)
         self.assertEqual(result["status"], 201)
         self.assertEqual(result["data"], [{"location": "Thika","happenningOn": "14/02/2019","tags": ["Tech","Health"],"topic": "Scrum"}])
+    
+    def test_user_can_confirm_rsvp_response(self):
+        """
+        test user can post their attendance responses
+        """
+        self.client.post("api/v1/meetups", data = json.dumps(self.post_meetup2),  content_type = "application/json")
+        response = self.client.post("api/v1/meetups/1/rsvps/yes", content_type = "application/json")
+        self.assertEqual(response.status_code, 200)
+        result = json.loads(response.data.decode('utf-8'))
+        self.assertEqual(result['data'], self.rsvp_response1)
