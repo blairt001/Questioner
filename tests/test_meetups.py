@@ -24,6 +24,9 @@ class MeetupsBaseTest(unittest.TestCase):
                              "images":["west.png", "east.png"],
                              "tags":["Tech", "Health"]
                             }
+        self.rsvp_response1 = [{"Attending": "yes",
+                                "meetup": 1,
+                                "topic": "Scrum"}]
 
         self.meetups = [{"created_at": "Wed, 09 Jan 2019 02:30:10 GMT",
                          "id": 1,
@@ -89,3 +92,14 @@ class TestMeetupsRecords(MeetupsBaseTest):
         result = json.loads(response.data.decode('utf-8'))
         self.assertEqual(result["status"], 200)
         # self.assertEqual(result["data"], self.meetups)
+    
+    def test_user_can_confirm_rsvp_response(self):
+        """
+        test user can post their attendance responses
+        """
+        self.client.post("api/v1/meetups", data = json.dumps(self.post_meetup2),  content_type = "application/json")
+        response = self.client.post("api/v1/meetups/1/rsvps/yes", content_type = "application/json")
+        self.assertEqual(response.status_code, 200)
+        result = json.loads(response.data.decode('utf-8'))
+        self.assertEqual(result['data'], self.rsvp_response1)
+    
