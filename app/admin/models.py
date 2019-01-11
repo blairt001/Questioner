@@ -4,10 +4,10 @@ The admin meetup model
 #import date
 from datetime import datetime
 
-#assign meetups , questions, comments and users to an empty list
+#assign meetups_len, questions_len, comments_len and users_len to an empty list
 MEETUPS_LEN = []
 QUESTIONS_LEN = []
-COMMENTS = []
+COMMENTS_LEN = []
 
 #create the meetup model class
 class MeetupModel:
@@ -102,7 +102,6 @@ class CommentModel:
 
     def __init__(self, comment, question_id):
         self.comment = comment
-        self.user_id = user_id
         self.comment_id = len(COMMENTS)+1
         self.question_id = question_id
 
@@ -110,7 +109,7 @@ class CommentModel:
         """
         Save the comment to the comments store
         """
-        COMMENTS.append(self)
+        COMMENTS_LEN.append(self)
 
     
     @staticmethod    #module level function
