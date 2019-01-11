@@ -22,32 +22,33 @@ class QuestionBaseTest(unittest.TestCase):
 
         self.post_question1 = {"title":"What is Scrum?",
                                "body":"I really like how people talk about Andela's Scrum"}
+
+        self.post_question2 = {"title":"What is JWT?",
+                               "body":"I learnt more about JWT at Andela's bootcamp"}
+
         self.upvoted_question= {"body": "I really like how people talk about Andela's Scrum",
                                 "meetup_id": 1,
+                                "comments": [], #initialize comments to an empty list
                                 "question_id": 1,
                                 "title": "What is Scrum?",
                                 "votes": 1}
         self.downvoted_question = {"body": "I really like how people talk about Andela's Scrum",
                                    "meetup_id": 1,
+                                   "comments": [],  #initialize comments to an empy list
                                    "question_id": 1,
                                    "title": "What is Scrum?",
                                    "votes": -1}
-        #prepare questions setup
-        self.post_question1 = {"title":"What is Scrum?",
-                               "body":"I really like how people talk about Andela's Scrum"}
+        #prepare comments setup
+         self.post_comment1 = {"comment":"Wow, I love every topic on scrum, the answer will help me alot"}
 
-        self.post_question2 = {"title":"What is JWT?",
-                               "body":"I learnt more about JWT at Andela's bootcamp"}
-
-
-        self.post_comment = {"comment":"I would love to hear this question answered"}
-
-        self.question_and_comment = {"body": "I would like to know this",
-                                     "comments": ["I would love to hear this question answered"],
+        self.question1_and_comment1 = {"body": "Scrum is an agile methodology of developing software products",
+                                     "comments": ["Wow, I love every topic on scrum, the answer will help me alot"],
                                      "meetup_id": 1,
                                      "question_id": 1,
-                                     "title": "what are languages?",
+                                     "title": "What is Scrum?",
                                      "votes": 0}
+
+        
 
 class TestQuestionApiEndpoint(QuestionBaseTest):
     """
