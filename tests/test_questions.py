@@ -32,6 +32,23 @@ class QuestionBaseTest(unittest.TestCase):
                                    "question_id": 1,
                                    "title": "What is Scrum?",
                                    "votes": -1}
+        #prepare questions setup
+        self.post_question1 = {"title":"What is Scrum?",
+                               "body":"I really like how people talk about Andela's Scrum"}
+
+        self.post_question2 = {"title":"What is JWT?",
+                               "body":"I learnt more about JWT at Andela's bootcamp"}
+
+
+        self.post_comment = {"comment":"I would love to hear this question answered"}
+
+        self.question_and_comment = {"body": "I would like to know this",
+                                     "comments": ["I would love to hear this question answered"],
+                                     "meetup_id": 1,
+                                     "question_id": 1,
+                                     "title": "what are languages?",
+                                     "votes": 0}
+
 class TestQuestionApiEndpoint(QuestionBaseTest):
     """
     Asserts whether the endpoints are working or not
