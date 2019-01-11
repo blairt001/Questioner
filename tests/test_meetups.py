@@ -47,7 +47,10 @@ class MeetupsBaseTest(unittest.TestCase):
                          "topic": "Fullstack"
                         }]
 
-
+    #tear down tests                                 
+    def tearDown(self):
+        """Tperform final cleanup after tests run"""
+        self.app.testing = False    
 
 class TestMeetupsRecords(MeetupsBaseTest):
     """
