@@ -96,6 +96,12 @@ class QuestionModel:
         """
         return [QuestionModel.to_json(question) for question in QUESTIONS_LEN if question.question_id == quiz_id]
 
+    @staticmethod
+    def get_all_questions(meeting_id):
+        """
+        user get all questions asked for the meetup
+        """
+        return [QuestionModel.to_json(question) for question in QUESTIONS_LEN if question.meetup_id == meeting_id]
 #Comment model class
 class CommentModel:
     """
