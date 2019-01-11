@@ -67,6 +67,7 @@ class QuestionModel:
         self.title = title
         self.votes = 0
         self.body = body
+        self.comments = COMMENTS_LEN
         self.created_at = datetime.now()
 
     def save_question(self):
@@ -86,6 +87,7 @@ class QuestionModel:
             "meetup_id": question.meetup_id,
             "votes": question.votes,
             "body": question.body,
+            "comments": question.comments
         }
     @staticmethod
     def get_question(quiz_id):
@@ -105,9 +107,9 @@ class CommentModel:
         self.comment_id = len(COMMENTS)+1
         self.question_id = question_id
 
-    def save_user_comment(self):
+    def save_comment(self):
         """
-        Save the comment to the comments store
+        Save the comment to the comments structure
         """
         COMMENTS_LEN.append(self)
 

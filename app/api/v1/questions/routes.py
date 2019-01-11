@@ -1,7 +1,7 @@
 """The users meetup routes"""
 
 from flask import jsonify, request
-from app.admin.models import QuestionModel, QUESTIONS_LEN
+from app.admin.models import QuestionModel, QUESTIONS_LEN, MeetupModel, MEETUPS_LEN, CommentModel, COMMENTS_LEN
 from app.api.v1 import path_1
 
 @path_1.route("/meetups/<int:meetup_id>/questions", methods=['POST'])
@@ -57,3 +57,20 @@ def downvote_question(question_id):
         my_question['votes'] = my_question['votes'] - 1
         return jsonify({"status": 200, "data": my_question}), 200
     return jsonify({"status": 404, "error": "Question not found"}), 404
+
+#user post comment
+@path_1.route("/questions/<int:question_id>/comment", methods=['POST'])
+def user_comment_on_a_question(question_id):
+    """
+    User post comment endpoint route
+    """
+    try:
+        comment = request.get_json()['comment']
+    except KeyError:
+        abort(make_response(jsonify({'status': 400, 'error':'Check your json key. It is comment'})))
+    question = QuestionModel.get_question(question_id)
+    if question:
+        my_question = question[0]
+        my_question['comments'].append(comment)
+        return jsonify({"status": 201, "data": my_question}), 201
+    return jsonify({'status': 404, 'error':'The question you are looking for is not found'}), 404
