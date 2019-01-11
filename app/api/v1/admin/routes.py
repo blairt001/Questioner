@@ -1,6 +1,6 @@
 """The meetup routes"""
 
-from flask import jsonify, request
+from flask import jsonify, request , make_response
 from app.admin.models import MeetupModel, MEETUPS_LEN
 from app.api.v1 import path_1 
 
@@ -77,7 +77,7 @@ def meetup_rsvp(meetup_id, resp):
     """
     if resp not in ["yes", "no", "maybe"]:
         return jsonify({'status':400, 'error':'Response must be either yes , no or maybe'}), 400
-    meetup = MeetupModel.get_meetup(meetup_id)
+    meetup = MeetupModel.get_specific_meetup(meetup_id)
     if meetup:
         meetup = meetup[0]
         return jsonify({'status':200, 'data':[{'meetup':meetup_id,
