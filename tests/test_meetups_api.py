@@ -4,8 +4,8 @@ import os
 import unittest
 import json
 
-# local imports
 from app import create_app
+
 #Our meetup base test with the setup function for initializing the tests
 class MeetupsBaseTest(unittest.TestCase):
 
