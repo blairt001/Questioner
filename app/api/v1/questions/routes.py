@@ -58,7 +58,7 @@ def downvote_question(question_id):
         return jsonify({"status": 200, "data": my_question}), 200
     return jsonify({"status": 404, "error": "Question not found"}), 404
 
-#user post comment
+#user should be able to post comment
 @path_1.route("/questions/<int:question_id>/comment", methods=['POST'])
 def user_comment_on_a_question(question_id):
     """
