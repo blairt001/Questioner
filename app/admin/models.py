@@ -45,6 +45,7 @@ class MeetupModel:
     #staticmethod decorator
     #convert the meetup record to JSON format
     #let the dict be readable
+    #Ignore images and created_at
     @staticmethod
     def to_json(meetup):
         return {
@@ -52,9 +53,7 @@ class MeetupModel:
             "topic": meetup.topic,
             "happenningOn": meetup.happenningOn,
             "location": meetup.location,
-            "images": meetup.images,
             "tags": meetup.tags,
-            "created_at": meetup.created_at
         }
 
 class QuestionModel:
