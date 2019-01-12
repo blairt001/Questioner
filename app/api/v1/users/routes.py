@@ -5,7 +5,7 @@ from flask import request, jsonify, make_response, abort
 from werkzeug.security import generate_password_hash, check_password_hash
 from app.admin.models import UserModel, USERS_LEN
 from app.api.v1 import path_1 
-from app.utils import validate_email, check_password
+from app.utils import validate_email, check_password , verify_if_user_is_admin, check_if_user_is_admin
 
 USER_KEY = os.getenv('SECRET_KEY')
 
@@ -47,7 +47,7 @@ def user_login():
         abort(make_response(jsonify({'status': 400,
                                      ' error': "Check your json keys and try again. Make sure it is username and password"}), 400))
 
-    verify_if_admin(username)  #rem we had set isAdmin to false
+    verify_if_user_is_admin(username)  #rem we had set isAdmin to false
 
     user = UserModel.query_users(username, password)
     if not user:
