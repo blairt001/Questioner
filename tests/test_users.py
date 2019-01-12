@@ -20,7 +20,7 @@ class UserBaseTest(unittest.TestCase):
         self.signup_user1 = {"firstname":"Tony",
                              "lastname": "Blair",
                              "username":"blairt001",
-                             "email":"blairt371.dev@gmail.com",
+                             "email":"blairt37.dev@gmail.com",
                              "password": "Blairman1234",
                              "confirm_password":"Blairman1234"}
 
