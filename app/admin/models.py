@@ -8,6 +8,7 @@ from datetime import datetime
 MEETUPS_LEN = []
 QUESTIONS_LEN = []
 COMMENTS_LEN = []
+USERS_LEN = []
 
 #create the meetup model class
 class MeetupModel:
@@ -128,3 +129,46 @@ class CommentModel:
         return {"comment":comment.comment,
                 "comment_id":comment.comment_id,
                 "question_id":comment.question}
+
+class UserModel:
+    """
+    This is the user model class that contains our model setup
+    """
+
+    def __init__(self, firstname, username, lastname, email, password):
+        """
+        Start by defining each user attributes to use during the tests
+        Keep in mind the user is not an admin
+        """
+        self.user_id = len(USERS_LEN)+1
+        self.firstname = firstname
+        self.lastname = lastname
+        self.username = username
+        self.email = email
+        self.registered_on = datetime.now()
+        self.password = password
+        self.is_admin = False
+
+    #after sign-up save the user to the created dict , USERS_LEN
+    def save_user(self):
+        """
+        Add a new user to the users store
+        """
+        USERS_LEN.append(self)
+
+    #lets check the data store for any user
+    @staticmethod
+    def query_users(username, password):
+        return [User.to_json(user) for user in USERS if user.username == username and user.password == password]
+
+    #return a json data , a readable dictionary object, including the date user was registered
+    @staticmethod
+    def to_json(user):
+        return {"firstname": user.firstname,
+                "lastname": user.lastname,
+                "username": user.username,
+                "email": user.email,
+                "password": user.password,
+                "registered_on": user.registered_on,}
+
+
