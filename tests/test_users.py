@@ -21,29 +21,29 @@ class UserBaseTest(unittest.TestCase):
                              "lastname": "Blair",
                              "username":"blairt001",
                              "email":"blairt371.dev@gmail.com",
-                             "password": "blairman1234",
-                             "confirm_password":"blairman1234"}
+                             "password": "Blairman1234",
+                             "confirm_password":"Blairman1234"}
 
         self.signup_user2 = {"firstname":"Lionel",
                              "lastname": "Messi",
                              "username":"limesi",
                              "email":"limesi@gmail.com",
-                             "password": "limesi123",
-                             "confirm_password":"limesi123"}
+                             "password": "Limesi1234",
+                             "confirm_password":"Limesi123"}
 
         self.signup_user3 = {"firstname":"Joshua",
                              "lastname": "Ariga",
                              "username":"arigajosh",
                              "email":"ariga@.com",
-                             "password": "ariga123",
-                             "confirm_password":"ariga123"}
+                             "password": "Ariga123",
+                             "confirm_password":"Ariga123"}
 
         self.signup_user4 = {"firstname":"Codeman",
                              "lastname": "Pragmatic",
                              "username":"codeprag",
                              "email":"codeman@gmail.com",
-                             "password": "code123",
-                             "confirm_password":"code123"}
+                             "password": "Code123",
+                             "confirm_password":"Code123"}
 
     #clean up the tests
     def tearDown(self):
@@ -56,10 +56,10 @@ class TestUsersEndpoints(UserBaseTest):
         """
         Tests to confirm a user signup successfully
         """
-        response = self.client.post("api/v1/auth/signup", data = json.dumps(self.signup_user3), content_type = "application/json")
+        response = self.client.post("api/v1/auth/signup", data = json.dumps(self.signup_user1), content_type = "application/json")
         self.assertEqual(response.status_code, 201)
         result = json.loads(response.data.decode('utf-8'))
-        self.assertEqual(result['data'], 'User Registered successfully!')
+        self.assertEqual(result['data'], 'User Registered Successfully!')
 
     #tests that user sign-up passwords match
     def test_user_enter_unmatching_passwords(self):
@@ -67,6 +67,6 @@ class TestUsersEndpoints(UserBaseTest):
         response = self.client.post("api/v1/auth/signup", data = json.dumps(self.signup_user2), content_type = "application/json")
         self.assertEqual(response.status_code, 400)
         result = json.loads(response.data.decode('utf-8'))
-        self.assertEqual(result["error"], "Your Passwords don't match!")
+        self.assertEqual(result["error"], "Your passwords don't match!")
 
    
