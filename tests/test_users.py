@@ -42,8 +42,16 @@ class UserBaseTest(unittest.TestCase):
                              "lastname": "Pragmatic",
                              "username":"codeprag",
                              "email":"codeman@gmail.com",
-                             "password": "Code123",
-                             "confirm_password":"Code123"}
+                             "password": "Code",
+                             "confirm_password":"Code"}
+
+        self.signup_user5 = {"firstname":"Codeman",
+                             "lastname": "Pragmatic",
+                             "username":"codeprag",
+                             "email":"codeman@gmail.com",
+                             "password": "Codedsdscfsdfsfsfhchdfgvdyvhgsdvghsd",
+                             "confirm_password":"Codedsdscfsdfsfsfhchdfgvdyvhgsdvghsd"}
+
 
     #clean up the tests
     def tearDown(self):
@@ -69,4 +77,23 @@ class TestUsersEndpoints(UserBaseTest):
         result = json.loads(response.data.decode('utf-8'))
         self.assertEqual(result["error"], "Your passwords don't match!")
 
-   
+    #tests user enter wrong email
+    def test_user_enter_wrong_email(self):
+        response = self.client.post("api/v1/auth/signup", data = json.dumps(self.signup_user3), content_type = "application/json")
+        self.assertEqual(response.status_code , 400)
+        result = json.loads(response.data.decode('utf-8'))
+        self.assertEqual(result["error"], "Email is Invalid")
+
+    #tests user enter short password
+    def test_user_enter_short_password(self):
+        response = self.client.post("api/v1/auth/signup", data = json.dumps(self.signup_user4), content_type = "application/json")
+        self.assertEqual(response.status_code , 400)
+        result = json.loads(response.data.decode('utf-8'))
+        self.assertEqual(result["error"], "Password should not be less than 8 characters or exceed 20")
+
+    #tests user enter long password
+    def test_user_enter_long_password(self):
+        response = self.client.post("api/v1/auth/signup", data = json.dumps(self.signup_user5), content_type = "application/json")
+        self.assertEqual(response.status_code , 400)
+        result = json.loads(response.data.decode('utf-8'))
+        self.assertEqual(result["error"], "Password should not be less than 8 characters or exceed 20")
