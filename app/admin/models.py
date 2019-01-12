@@ -159,7 +159,7 @@ class UserModel:
     #lets check the data store for any user
     @staticmethod
     def query_users(username, password):
-        return [User.to_json(user) for user in USERS_LEN if user.username == username and user.password == password]
+        return [UserModel.to_json(user) for user in USERS_LEN if user.username == username and user.password == password]
 
     #return a json data , a readable dictionary object, including the date user was registered
     @staticmethod
