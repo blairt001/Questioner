@@ -26,7 +26,7 @@ def user_sign_up():
     check_password(password, confirm_pass)
     email = validate_email(email)
 
-    user = User(firstname=firstname,
+    user = UserModel(firstname=firstname,
                 username=username,
                 lastname=lastname,
                 email=email,
