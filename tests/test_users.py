@@ -87,8 +87,8 @@ class TestUsersEndpoints(UserBaseTest):
 
     #tests that a user can issue a correct pasword and login
     def test_user_can_login_with_correct_password(self):
-        self.client.post("api/v1/auth/signup", data = json.dumps(self.signup_user5), content_type = "application/json")
-        response = self.client.post("api/v1/auth/login", data = json.dumps(self.login_user3), content_type = "application/json")
+        self.client.post("api/v1/auth/signup", data = json.dumps(self.signup_user1), content_type = "application/json")
+        response = self.client.post("api/v1/auth/login", data = json.dumps(self.login_user1), content_type = "application/json")
         self.assertEqual(response.status_code, 200)
         result = json.loads(response.data.decode('utf-8'))
         self.assertTrue(result['token'])
