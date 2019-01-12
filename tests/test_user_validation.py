@@ -73,6 +73,7 @@ class ValidationsBaseTest(unittest.TestCase):
 #lets now test for user validations
 class TestValidations(ValidationsBaseTest):
 
+    #tests if email is already taken
     def test_if_email_is_already_taken(self):
         self.client.post("api/v1/auth/signup", data = json.dumps(self.signup_user), content_type = "application/json")
         response = self.client.post("api/v1/auth/signup", data = json.dumps(self.signup_user), content_type = "application/json")
@@ -80,36 +81,42 @@ class TestValidations(ValidationsBaseTest):
         result = json.loads(response.data.decode('utf-8'))
         self.assertEqual(result['error'],"Email is already taken!")
 
+    #tests if user enters an invalid email
     def test_user_enter_an_invalid_email1(self):
         response = self.client.post("api/v1/auth/signup", data = json.dumps(self.user_email1_invalid), content_type = "application/json")
         self.assertEqual(response.status_code, 400)
         result = json.loads(response.data.decode('utf-8'))
         self.assertEqual(result['error'],"Email is Invalid")
 
+    #tests if a user enters an invalid email
     def test_user_enter_an_invalid_email2(self):
         response = self.client.post("api/v1/auth/signup", data = json.dumps(self.user_email2_invalid), content_type = "application/json")
         self.assertEqual(response.status_code, 400)
         result = json.loads(response.data.decode('utf-8'))
         self.assertEqual(result['error'],"Email is Invalid")
 
+    #tests if a user uses the correct password length
     def test_correct_user_pasword_length(self):
         response = self.client.post("api/v1/auth/signup", data = json.dumps(self.user_password_length), content_type = "application/json")
         self.assertEqual(response.status_code, 400)
         result = json.loads(response.data.decode('utf-8'))
         self.assertEqual(result['error'],"Password should not be less than 8 characters or exceed 20")
 
+    #tests if a users password contain an alphabet
     def test_user_pasword_is_alphabets(self):
         response = self.client.post("api/v1/auth/signup", data = json.dumps(self.user_password_alphabetic), content_type = "application/json")
         self.assertEqual(response.status_code, 400)
         result = json.loads(response.data.decode('utf-8'))
         self.assertEqual(result['error'],"Password should contain a letter between a-z")
 
+    #tests if a users password contains a capital letter
     def test_user_pasword_contains_capital(self):
         response = self.client.post("api/v1/auth/signup", data = json.dumps(self.user_password_capital), content_type = "application/json")
         self.assertEqual(response.status_code, 400)
         result = json.loads(response.data.decode('utf-8'))
         self.assertEqual(result['error'],"Password should contain a capital letter")
 
+    #tests if a users password contains a number
     def test_user_pasword_number(self):
         response = self.client.post("api/v1/auth/signup", data = json.dumps(self.user_password_number), content_type = "application/json")
         self.assertEqual(response.status_code, 400)
