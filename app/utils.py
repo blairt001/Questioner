@@ -81,7 +81,7 @@ def token_required(f):
         try:
             data = jwt.decode(token, key)
             current_user = None
-            for user in USERS:
+            for user in USERS_LEN:
                 if user.username == data['username']:
                     current_user = user
 
