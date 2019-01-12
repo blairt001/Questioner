@@ -5,6 +5,7 @@ from flask import request, jsonify, make_response, abort
 from werkzeug.security import generate_password_hash, check_password_hash
 from app.admin.models import UserModel, USERS_LEN
 from app.api.v1 import path_1 
+from app.utils import validate_email, check_password
 
 USER_KEY = os.getenv('SECRET_KEY')
 
