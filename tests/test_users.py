@@ -49,3 +49,24 @@ class UserBaseTest(unittest.TestCase):
     def tearDown(self):
         self.app.testing = False
 
+#testing for the users endpoints
+class TestUsersEndpoints(UserBaseTest):
+   
+    def test_user_can_sign_up(self):
+        """
+        Tests to confirm a user signup successfully
+        """
+        response = self.client.post("api/v1/auth/signup", data = json.dumps(self.signup_user3), content_type = "application/json")
+        self.assertEqual(response.status_code, 201)
+        result = json.loads(response.data.decode('utf-8'))
+        self.assertEqual(result['data'], 'User Registered successfully!')
+
+    #tests that user sign-up passwords match
+    def test_user_enter_unmatching_passwords(self):
+       
+        response = self.client.post("api/v1/auth/signup", data = json.dumps(self.signup_user2), content_type = "application/json")
+        self.assertEqual(response.status_code, 400)
+        result = json.loads(response.data.decode('utf-8'))
+        self.assertEqual(result["error"], "Your Passwords don't match!")
+
+   
