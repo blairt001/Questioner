@@ -45,11 +45,21 @@ class UserBaseTest(unittest.TestCase):
                              "password": "Code123",
                              "confirm_password":"Code123"}
 
+        self.signup_user5 = {"firstname":"Kenyan",
+                             "lastname": "Man",
+                             "username":"kenyaa",
+                             "email":"kenyan@gmail.com",
+                             "password": "@Mitcoder1",
+                             "confirm_password":"@Mitcoder1"}
+
         self.login_user1 = {"username":"blairt001",
                             "password":"Blairman1234"}
 
         self.login_user2 = {"username":"limesi",
                             "password":"Limesi1234"}
+
+        self.login_user3 = {"username":"kenyaa",
+                            "password":"@Mitcoder1"}
 
     #clean up the tests
     def tearDown(self):
@@ -77,8 +87,8 @@ class TestUsersEndpoints(UserBaseTest):
 
     #tests that a user can issue a correct pasword and login
     def test_user_can_login_with_correct_password(self):
-        self.client.post("api/v1/auth/signup", data = json.dumps(self.signup_user1), content_type = "application/json")
-        response = self.client.post("api/v1/auth/login", data = json.dumps(self.login_user1), content_type = "application/json")
+        self.client.post("api/v1/auth/signup", data = json.dumps(self.signup_user5), content_type = "application/json")
+        response = self.client.post("api/v1/auth/login", data = json.dumps(self.login_user3), content_type = "application/json")
         self.assertEqual(response.status_code, 200)
         result = json.loads(response.data.decode('utf-8'))
         self.assertTrue(result['token'])
