@@ -53,5 +53,5 @@ def user_login():
     if not user:
         return jsonify({"status": 400, "data":"Please Register First to Login"}), 400
 
-    token = jwt.encode({"username":username}, KEY, algorithm='HS256')
+    token = jwt.encode({"username":username}, USER_KEY, algorithm='HS256')
     return jsonify({"status": 200, "token":token.decode('UTF-8'), "message": "You have Logged in Successfully"}), 200
