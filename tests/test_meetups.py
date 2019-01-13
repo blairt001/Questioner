@@ -166,9 +166,32 @@ class TestMeetupsRecords(MeetupsBaseTest):
     
     #tests for meetup not set
     def test_no_meetup_topic_provided(self):
-        self.token = self.admin_login()
-        response = self.client.post("api/v1/meetups", data = json.dumps(self.meetup_topic_record), headers={'x-access-token': self.token}, content_type = "application/json")
+        response = self.client.post("api/v1/meetups", data = json.dumps(self.meetup_topic_record), content_type = "application/json")
         result = json.loads(response.data.decode('utf-8'))
         self.assertEqual(response.status_code, 400)
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["error"], 'Provide the topic field')
+    
+    #tests for meetup location missing
+    def test_no_meetup_location_provided(self):
+        response = self.client.post("api/v1/meetups", data = json.dumps(self.meetup_location_record), content_type = "application/json")
+        result = json.loads(response.data.decode('utf-8'))
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["error"], 'provide the location')
+
+    #tests for meetup date missing
+    def test_no_meetup_date_provided(self):
+        response = self.client.post("api/v1/meetups", data = json.dumps(self.meetup_date_record), content_type = "application/json")
+        result = json.loads(response.data.decode('utf-8'))
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["error"], 'provide the meetup date')
+
+    #tests for meetup tags missing
+    def test_no_meetup_tags_provided(self):
+        response = self.client.post("api/v1/meetups", data = json.dumps(self.meetup_tag_record), content_type = "application/json")
+        result = json.loads(response.data.decode('utf-8'))
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["error"], 'provide the tags')
