@@ -26,9 +26,9 @@ class MeetupsBaseTest(unittest.TestCase):
                                 "password":"Blairt123"}
         #sign-u fake admin
         self.signup_fake_admin = {"firstname":"Andela",
-                            "lastname": "Andela",
+                            "lastname": "Lover",
                             "username":"fakedmin",
-                            "email":"blairt@gmail.com",
+                            "email":"blair1@gmail.com",
                             "password": "Blairt123",
                             "confirm_password":"Blairt123"}
 
@@ -114,9 +114,9 @@ class TestMeetupsRecords(MeetupsBaseTest):
     #log in a fake admin
     def fake_admin_login(self):
         self.client.post(
-            'api/v1/auth/signup', data=json.dumps(self.signup_fake_admin), content_type="application/json")
+            'api/v1/auth/signup', data=json.dumps(self.signup_real_admin), content_type="application/json")
         login = self.client.post(
-            'api/v1/auth/login', data=json.dumps(self.login_fake_admin), content_type="application/json")
+            'api/v1/auth/login', data=json.dumps(self.login_real_admin), content_type="application/json")
         data = json.loads(login.data.decode('utf-8'))
         self.token = data["token"]
         return self.token
@@ -141,8 +141,8 @@ class TestMeetupsRecords(MeetupsBaseTest):
     
     #tests user can fetch a specific meetup record
     def test_user_get_specific_meetup(self):
-        self.client.post("api/v1/meetups", data = json.dumps(self.post_meetup1), content_type = "application/json")
-        self.client.post("api/v1/meetups", data = json.dumps(self.post_meetup2),  content_type = "application/json")
+        self.client.post("api/v1/meetups", data = json.dumps(self.post_meetup1), headers={'x-access-token': self.token}, content_type = "application/json")
+        self.client.post("api/v1/meetups", data = json.dumps(self.post_meetup2),  headers={'x-access-token': self.token}, content_type = "application/json")
         response = self.client.get("api/v1/meetups/1", content_type = "application/json")
         self.assertEqual(response.status_code, 200)
         result = json.loads(response.data.decode('utf-8'))
@@ -155,8 +155,8 @@ class TestMeetupsRecords(MeetupsBaseTest):
     
     #tests user can get all meetup records
     def test_user_can_get_all_meetups_records(self):
-        self.client.post("api/v1/meetups", data = json.dumps(self.post_meetup1), content_type = "application/json")
-        self.client.post("api/v1/meetups", data = json.dumps(self.post_meetup2),  content_type = "application/json")
+        self.client.post("api/v1/meetups", data = json.dumps(self.post_meetup1), headers={'x-access-token': self.token}, content_type = "application/json")
+        self.client.post("api/v1/meetups", data = json.dumps(self.post_meetup2),  headers={'x-access-token': self.token}, content_type = "application/json")
         response = self.client.get("api/v1/meetups/upcoming", content_type = "application/json")
         self.assertEqual(response.status_code, 200)
         result = json.loads(response.data.decode('utf-8'))
@@ -170,7 +170,7 @@ class TestMeetupsRecords(MeetupsBaseTest):
         result = json.loads(response.data.decode('utf-8'))
         self.assertEqual(response.status_code, 400)
         self.assertEqual(result["status"], 400)
-        self.assertEqual(result["error"], 'Meetup topic is required')
+        self.assertEqual(result["error"], 'Provide the topic field')
 
     #tests meetup date required
     def test_no_meetup_date_provided(self):
@@ -179,7 +179,7 @@ class TestMeetupsRecords(MeetupsBaseTest):
         result = json.loads(response.data.decode('utf-8'))
         self.assertEqual(response.status_code, 400)
         self.assertEqual(result["status"], 400)
-        self.assertEqual(result["error"], 'Please provide the meetup record date field')
+        self.assertEqual(result["error"], 'Provide the meetup date')
     
     #tests for location required field
     def test_no_meetup_location_data_provided(self):
@@ -188,7 +188,7 @@ class TestMeetupsRecords(MeetupsBaseTest):
         result = json.loads(response.data.decode('utf-8'))
         self.assertEqual(response.status_code, 400)
         self.assertEqual(result["status"], 400)
-        self.assertEqual(result["error"], 'Please the meetup location field is required')
+        self.assertEqual(result["error"], 'provide the location')
     
     #tests for meetup record tag required
     def test_no_meetup_record_tags_data_provided(self):
@@ -197,7 +197,7 @@ class TestMeetupsRecords(MeetupsBaseTest):
         result = json.loads(response.data.decode('utf-8'))
         self.assertEqual(response.status_code, 400)
         self.assertEqual(result["status"], 400)
-        self.assertEqual(result["error"], 'Please provide the tags')
+        self.assertEqual(result["error"], 'provide the tags')
 
     #ttests for meetup record missing
     def test_meetup_record_missing(self):
