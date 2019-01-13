@@ -55,6 +55,32 @@ class MeetupsBaseTest(unittest.TestCase):
                                 "meetup": 1,
                                 "topic": "Scrum"}]
 
+        self.meetup_record_topic = {"topic":"",
+                            "happenningOn":"14/02/2019",
+                            "location":"Thika",
+                            "images":["blair.png", "tony.png"],
+                            "tags":["Tech", "Health"]
+                           }
+
+        self.meetup_record_date = {"topic":"Scrum",
+                            "happenningOn":"",
+                            "location":"Thika",
+                            "images":["blair.png", "tony.png"],
+                            "tags":["Tech", "Health"]}
+
+        self.meetup_record_location = {"topic":"Scrum",
+                            "happenningOn":"14/02/2019",
+                            "location":"",
+                            "images":["blair.png", "tony.png"],
+                            "tags":["Tech", "Health"]
+                           }
+
+        self.meetup_record_tag = {"topic":"Scrum",
+                            "happenningOn":"14/02/2019",
+                            "location":"Thika",
+                            "images":["blair.png", "tony.png"],
+                            "tags":[]
+                           }
         self.meetups = [{"created_at": "Wed, 09 Jan 2019 02:30:10 GMT",
                          "id": 1,
                          "images": ["blair.png",
@@ -129,19 +155,60 @@ class TestMeetupsRecords(MeetupsBaseTest):
     
     #tests user can get all meetup records
     def test_user_can_get_all_meetups_records(self):
-        """
-       User to fetch all upcoming meetup records
-        """
         self.client.post("api/v1/meetups", data = json.dumps(self.post_meetup1), content_type = "application/json")
         self.client.post("api/v1/meetups", data = json.dumps(self.post_meetup2),  content_type = "application/json")
-
         response = self.client.get("api/v1/meetups/upcoming", content_type = "application/json")
         self.assertEqual(response.status_code, 200)
-
         result = json.loads(response.data.decode('utf-8'))
         self.assertEqual(result["status"], 200)
         # self.assertEqual(result["data"], self.meetups)
+
+    #tests meetup topic required
+    def test_meetup_topic_not_set(self):
+        self.token = self.fake_admin_login()
+        response = self.client.post("api/v1/meetups", data = json.dumps(self.meetup_record_topic), headers={'x-access-token': self.token}, content_type = "application/json")
+        result = json.loads(response.data.decode('utf-8'))
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["error"], 'Meetup topic is required')
+
+    #tests meetup date required
+    def test_no_meetup_date_provided(self):
+        self.token = self.fake_admin_login()
+        response = self.client.post("api/v1/meetups", data = json.dumps(self.meetup_record_date), headers={'x-access-token': self.token}, content_type = "application/json")
+        result = json.loads(response.data.decode('utf-8'))
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["error"], 'Please provide the meetup record date field')
     
+    #tests for location required field
+    def test_no_meetup_location_data_provided(self):
+        self.token = self.fake_admin_login()
+        response = self.client.post("api/v1/meetups", data = json.dumps(self.meetup_record_location), headers={'x-access-token': self.token}, content_type = "application/json")
+        result = json.loads(response.data.decode('utf-8'))
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["error"], 'Please the meetup location field is required')
+    
+    #tests for meetup record tag required
+    def test_no_meetup_record_tags_data_provided(self):
+        self.token = self.fake_admin_login()
+        response = self.client.post("api/v1/meetups", data = json.dumps(self.meetup_record_tag), headers={'x-access-token': self.token}, content_type = "application/json")
+        result = json.loads(response.data.decode('utf-8'))
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["error"], 'Please provide the tags')
+
+    #ttests for meetup record missing
+    def test_meetup_record_missing(self):
+        self.token = self.fake_admin_login()
+        self.client.post("api/v1/meetups", data = json.dumps(self.post_meetup1), headers={'x-access-token': self.token}, content_type = "application/json")
+        response = self.client.delete("api/v1/meetups/100", headers={'x-access-token': self.token}, content_type = "application/json")
+        result = json.loads(response.data.decode('utf-8'))
+        self.assertEqual(response.status_code, 404)
+        self.assertEqual(result["status"], 404)
+        self.assertEqual(result["data"], "The specified meetup id 100 is missing from our database")
+
     #tests fo user rsvp a response, post their attendance status
     def test_user_can_confirm_rsvp_response(self):
         self.client.post("api/v1/meetups", data = json.dumps(self.post_meetup2),  content_type = "application/json")
