@@ -46,6 +46,13 @@ class MeetupsBaseTest(unittest.TestCase):
                              "images":["west.png", "east.png"],
                              "tags":["Tech", "Health"]
                             }
+        self.post_meetup3 = {"topic":"Miguel Miguel",
+                             "happenningOn":"16/02/2019",
+                             "location":"Nairobi",
+                             "images":["mig1.png", "mig2.png"],
+                             "tags":["Tech", "Health"]
+                            }
+
         self.rsvp_response1 = [{"Attending": "yes",
                                 "meetup": 1,
                                 "topic": "Scrum"}]
@@ -195,3 +202,13 @@ class TestMeetupsRecords(MeetupsBaseTest):
         self.assertEqual(response.status_code, 400)
         self.assertEqual(result["status"], 400)
         self.assertEqual(result["error"], 'provide the tags')
+
+    #tests admin can delete a meetup record
+    def test_admin_can_delete_a_meetup(self):
+        #self.token = self.admin_login()
+        self.client.post("api/v1/meetups", data = json.dumps(self.post_meetup3), content_type = "application/json")
+        response = self.client.delete("api/v1/meetups/3", content_type = "application/json")
+        result = json.loads(response.data.decode('utf-8'))
+        self.assertEqual(response.status_code, 404)
+        self.assertEqual(result["status"], 404)
+        self.assertEqual(result["data"], "Meetup with id 3 not found")

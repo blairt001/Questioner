@@ -44,6 +44,18 @@ class MeetupModel:
         """
         return [MeetupModel.to_json(meetup) for meetup in MEETUPS_LEN]
 
+    #delete a specific meetup
+    @staticmethod
+    def delete_specific_meetup(meet_id):
+        found = None
+        for meetup in MEETUPS_LEN:
+            if meetup.id == meet_id:
+                MEETUPS_LEN.remove(meetup)
+                found = True
+            elif meetup.id != meet_id:
+                found = False
+        return found
+
     #staticmethod decorator
     #convert the meetup record to JSON format
     #let the dict be readable
@@ -169,6 +181,7 @@ class UserModel:
                 "username": user.username,
                 "email": user.email,
                 "password": user.password,
-                "registered_on": user.registered_on,}
-
+       
+             "registered_on": user.registered_on,}
+    
 
