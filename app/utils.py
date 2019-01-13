@@ -108,8 +108,8 @@ def verify_if_user_is_admin(username):
             if username == 'blairtheadmin':
                 user.is_admin = True
                 admin = True
-                admin = False
-            return admin
+            admin = False
+        return admin
 
 #check if the user is actually an admin
 def check_if_user_is_admin():
