@@ -28,7 +28,7 @@ class MeetupsBaseTest(unittest.TestCase):
         self.signup_fake_admin = {"firstname":"Andela",
                             "lastname": "Andela",
                             "username":"fakedmin",
-                            "email":"blair@gmail.com",
+                            "email":"blairt@gmail.com",
                             "password": "Blairt123",
                             "confirm_password":"Blairt123"}
 
@@ -208,6 +208,7 @@ class TestMeetupsRecords(MeetupsBaseTest):
         self.assertEqual(response.status_code, 404)
         self.assertEqual(result["status"], 404)
         self.assertEqual(result["data"], "The specified meetup id 100 is missing from our database")
+    
 
     #tests fo user rsvp a response, post their attendance status
     def test_user_can_confirm_rsvp_response(self):
