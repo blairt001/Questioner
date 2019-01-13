@@ -12,6 +12,28 @@ class MeetupsBaseTest(unittest.TestCase):
         self.app = create_app("testing")
         self.client = self.app.test_client()
 
+        self.signup_admin_user1 = {"firstname":"Tony",
+                             "lastname": "Andela",
+                             "username":"blairtheadmin",
+                             "email":"blairt37.dev@gmail.com",
+                             "password": "Blairman1234",
+                             "confirm_password":"Blairman1234"}
+
+        self.signup_admin_user2 = {"firstname":"Tony",
+                             "lastname": "Andela",
+                             "username":"fakeadmin",
+                             "email":"blairt371.dev@gmail.com",
+                             "password": "Blairman1234",
+                             "confirm_password":"Blairman1234"}
+
+        self.login_user1 = {"username":"blairtheadmin",
+                           "password":"Blairman1234"}
+
+        self.login_user2 = {"username":"fakeadmin",
+                           "password":"Blairman1234"}
+
+
+
         self.post_meetup1 = {"topic":"Scrum",
                             "happenningOn":"14/02/2019",
                             "location":"Thika",
@@ -47,6 +69,8 @@ class MeetupsBaseTest(unittest.TestCase):
                          "topic": "Fullstack"
                         }]
 
+        self.token = ''
+
     #tear down tests                                 
     def tearDown(self):
         """Tperform final cleanup after tests run"""
@@ -56,6 +80,14 @@ class TestMeetupsRecords(MeetupsBaseTest):
     """
     We test for all the meetup endpoints
     """
+    def admin_login(self):
+        self.client.post(
+            'api/v1/auth/signup', data=json.dumps(self.signup_admin_user1), content_type="application/json")
+        login = self.client.post(
+            'api/v1/auth/login', data=json.dumps(self.login_user1), content_type="application/json")
+        data = json.loads(login.data.decode('utf-8'))
+        self.token = data["token"]
+        return self.token
 
     def test_admin_can_create_a_meetup(self):
 
