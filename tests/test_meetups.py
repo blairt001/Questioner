@@ -15,14 +15,14 @@ class MeetupsBaseTest(unittest.TestCase):
         self.signup_admin_user1 = {"firstname":"Tony",
                              "lastname": "Andela",
                              "username":"blairtheadmin",
-                             "email":"blairt37.dev@gmail.com",
+                             "email":"blair1234@gmail.com",
                              "password": "Blairman1234",
                              "confirm_password":"Blairman1234"}
 
         self.signup_admin_user2 = {"firstname":"Tony",
                              "lastname": "Andela",
                              "username":"fakeadmin",
-                             "email":"blairt371.dev@gmail.com",
+                             "email":"blair1234.dev@gmail.com",
                              "password": "Blairman1234",
                              "confirm_password":"Blairman1234"}
 
@@ -49,6 +49,31 @@ class MeetupsBaseTest(unittest.TestCase):
         self.rsvp_response1 = [{"Attending": "yes",
                                 "meetup": 1,
                                 "topic": "Scrum"}]
+
+        self.meetup_topic_record = {"topic":"",
+                            "happenningOn":"14/02/2019",
+                            "location":"Thika",
+                            "images":["blair.png", "tony.png"],
+                            "tags":["Tech", "Health"]}
+
+        self.meetup_location_record = {"topic":"Scrum",
+                            "happenningOn":"14/02/2019",
+                            "location":"",
+                            "images":["blair.png", "tony.png"],
+                            "tags":["Tech", "Health"]}
+
+        self.meetup_date_record = {"topic":"Scrum",
+                            "happenningOn":"",
+                            "location":"Thika",
+                            "images":["blair.png", "tony.png"],
+                            "tags":["Tech", "Health"]}
+
+        self.meetup_tag_record = {"topic":"Scrum",
+                            "happenningOn":"14/02/2019",
+                            "location":"Thika",
+                            "images":["blair.png", "tony.png"],
+                            "tags":[]}
+
 
         self.meetups = [{"created_at": "Wed, 09 Jan 2019 02:30:10 GMT",
                          "id": 1,
@@ -139,3 +164,11 @@ class TestMeetupsRecords(MeetupsBaseTest):
         result = json.loads(response.data.decode('utf-8'))
         self.assertEqual(result['data'], self.rsvp_response1)
     
+    #tests for meetup not set
+    def test_no_meetup_topic_provided(self):
+        self.token = self.admin_login()
+        response = self.client.post("api/v1/meetups", data = json.dumps(self.meetup_topic_record), headers={'x-access-token': self.token}, content_type = "application/json")
+        result = json.loads(response.data.decode('utf-8'))
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(result["status"], 400)
+        self.assertEqual(result["error"], 'Provide the topic field')
