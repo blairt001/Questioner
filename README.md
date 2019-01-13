@@ -59,12 +59,16 @@ pip install -r requirements.txt
 Follow the following procedures:
 
 ```
-export  FLASK_ENV=development
+export  FLASK_ENV="development"
 ```
 
 ```
-export FLASK_APP=manage.py
+export FLASK_APP="manage.py"
 ```
+ 
+ ```
+export APP_SETTINGS="development"
+ ```
 
 ```
 python manage.py runserver
