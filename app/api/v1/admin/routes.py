@@ -87,7 +87,7 @@ def meetup_rsvp(meetup_id, resp):
 #admin delete meetup
 @path_1.route("/meetups/<int:meetup_id>", methods=['DELETE'])
 def admin_delete_a_meetup(meetup_id):
-    deleted = MeetupModel.delete_meetup(meetup_id)
+    deleted = MeetupModel.delete_specific_meetup(meetup_id)
     if deleted:
         return jsonify({'status': 200, 'data':"Deleted successfully"}), 200
     return jsonify({'status': 404, 'data':"Meetup with id {} not found".format(meetup_id)}), 404
