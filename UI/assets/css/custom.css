@@ -85,7 +85,7 @@ a{
   display: block;
 }
 .d-flex{
-  display: flex;
+  display: inline-block;
 }
 .d-none{
   display: none;
