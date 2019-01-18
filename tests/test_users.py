@@ -60,6 +60,14 @@ class UserBaseTest(unittest.TestCase):
                              "password": "@Mitcoder1",
                              "confirm_password":"@Mitcoder1"}
 
+        self.signup_user7 = {"firstname":"Joshua",
+                             "lastname": "Ariga",
+                             "username":"arigajosh",
+                             "email":"ariga@gmail",
+                             "password": "Ariga123",
+                             "confirm_password":"Ariga123"}
+
+
         self.login_user1 = {"username":"blairt001",
                             "password":"Blairman1234"}
 
@@ -93,7 +101,7 @@ class TestUsersEndpoints(UserBaseTest):
         self.assertEqual(result["error"], "Your passwords don't match!")
 
     #tests user enter wrong email
-    def test_user_enter_wrong_email(self):
+    def test_user_enter_wrong_email1(self):
         response = self.client.post("api/v1/auth/signup", data = json.dumps(self.signup_user3), content_type = "application/json")
         self.assertEqual(response.status_code , 400)
         result = json.loads(response.data.decode('utf-8'))
@@ -112,3 +120,9 @@ class TestUsersEndpoints(UserBaseTest):
         self.assertEqual(response.status_code , 400)
         result = json.loads(response.data.decode('utf-8'))
         self.assertEqual(result["error"], "Password should not be less than 8 characters or exceed 20")
+
+    def test_user_enter_wrong_email2(self):
+        response = self.client.post("api/v1/auth/signup", data = json.dumps(self.signup_user7), content_type = "application/json")
+        self.assertEqual(response.status_code , 400)
+        result = json.loads(response.data.decode('utf-8'))
+        self.assertEqual(result["error"], "Email is Invalid")
