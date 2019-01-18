@@ -32,5 +32,4 @@ for development and testing
 app_config = {
     "development": DevelopmentConfig,
     "testing": TestingConfig
-
 }
