@@ -18,22 +18,18 @@ Questioner is a crowd-source questions for a meetup. It helps the meetup organiz
 
 ## Questioner API Endpoints
 
-| **METHOD** | **ENDPOINT** | **DESCRIPTION** |
-| --- | --- | --- |
-| **POST** | `/api/v1/auth/login` | Login |
-| **POST** | `/api/v1/auth/Signup` | Sign Up |
-| **POST** | `/api/v1/auth/logout` | Logout |
-| **POST** | `/api/v1/meetups` | Create a meetup |
-| **DELETE** | `/api/v1/meetups/<int:meetup_id>` | Delete a meetup |
-| **POST** | `/api/v1/questions` | Post a question to a specific meetup |
-| **GET** | `/api/v1/meetups/<int:meet_id>/questions` | Get all questions on a meetup |
-| **POST** | `/api/v1/questions/<int:question_id>/comment` | Comment on a question |
-| **GET** | `/api/v1/questions/<int:question_id>/comments` | Get all comments on a question |
-| **GET** | `/api/v1/meetups/upcoming` | Fetch all upcoming meetups |
-| **GET** | `/api/v1/meetups/<int:meetup_id>` | Fetch a specific meetup |
-| **POST** | `/api/v1/meetups/<int:meetup_id>/rsvps/<resp>` | RSVP to a meetup |
-| **PATCH** | `/api/v1/questions/<int:question_id>/upvote` | Upvote a question |
-| **PATCH** | `/api/v1/questions/<int:question_id>/downvote` | Downvote a question |
+| Method        |       Endpoint                              |         Description                           |
+| ------------- |       -------------                         |         -------------                         |
+| `GET`         | `/api/v1/meetups/upcoming`                  |   Gets all meetups records                    |
+| `GET`         | `/api/v1/meetups/<meetup-id>`               |   Get a specific meetup record                |
+| `POST`        | `/api/v1/meetups`                           |   Create a meetup record                      |
+| `POST`        | `/api/v1/questions`                         |   Create a question record                    |
+| `POST`        | `/api/v1/users/signup`                |   Registers a user                             |
+| `POST`        | `/api/v1/users/login`                       |   Sign in a User                              |
+| `POST`        | `/api/v1/meetups/<meetup-id/rsvps>`         |   User respond to a meetup                    |
+| `PATCH`       | `/api/v1/questions/<questions-id>/upvote`   |   vote on a meetup question                   |
+| `PATCH`       | `/api/v1/questions/<questions-id/downvote`  |   vote on a meetup question                   |
+|
 
 
 # Setting up your system
@@ -87,7 +83,7 @@ Use [Postman](https://www.getpostman.com/downloads/)
 [MIT LICENSE](https://github.com/blairt001/Questioner/blob/develop/LICENSE)
 
 ## Credits
-[Andela Kenya](https://andela.com/)
+[Andela](https://andela.com/)
 
 ## Developer
 Tony B.
