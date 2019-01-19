@@ -151,7 +151,8 @@ class TestUsersEndpoints(UserBaseTest):
         result = json.loads(response.data.decode('utf-8'))
         self.assertTrue(result['token'])
         self.assertEqual(result["message"], "You have Logged in Successfully")
-
+    
+    #tests no login for unregistered user
     def test_user_no_login_if_not_registered(self):
         """
         Test that an unregistered user can not login
