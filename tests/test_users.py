@@ -67,6 +67,13 @@ class UserBaseTest(unittest.TestCase):
                              "password": "Ariga123",
                              "confirm_password":"Ariga123"}
 
+        self.signup_user8 = {"firstname":"Tony",
+                             "lastname": "Blair",
+                             "username":"codeman001",
+                             "email":"blairt2.dev@gmail.com",
+                             "password": "Codeman1234",
+                             "confirm_password":"Codeman1234"}
+
 
         self.login_user1 = {"username":"blairt001",
                             "password":"Blairman1234"}
@@ -76,6 +83,9 @@ class UserBaseTest(unittest.TestCase):
 
         self.login_user3 = {"username":"kenyaa",
                             "password":"@Mitcoder1"}
+
+        self.login_user8 = {"username":"codeman001",
+                            "password":"Codeman1234"}
 
     #clean up the tests
     def tearDown(self):
@@ -126,3 +136,29 @@ class TestUsersEndpoints(UserBaseTest):
         self.assertEqual(response.status_code , 400)
         result = json.loads(response.data.decode('utf-8'))
         self.assertEqual(result["error"], "Email is Invalid")
+
+    def test_that_user_can_successfully_login(self):
+        """
+        Test user can login after signup
+        """
+        self.client.post("api/v1/auth/signup",
+                         data=json.dumps(self.signup_user8),
+                         content_type="application/json")
+        response = self.client.post("api/v1/auth/login",
+                                    data=json.dumps(self.login_user8),
+                                    content_type="application/json")
+        self.assertEqual(response.status_code, 200)
+        result = json.loads(response.data.decode('utf-8'))
+        self.assertTrue(result['token'])
+        self.assertEqual(result["message"], "You have Logged in Successfully")
+
+    def test_user_no_login_if_not_registered(self):
+        """
+        Test that an unregistered user can not login
+        """
+        response = self.client.post("api/v1/auth/login",
+                                    data=json.dumps(self.login_user2),
+                                    content_type="application/json")
+        self.assertEqual(response.status_code, 400)
+        result = json.loads(response.data.decode('utf-8'))
+        self.assertEqual(result["data"], "Please Register First to Login")

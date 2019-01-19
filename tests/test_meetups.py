@@ -52,10 +52,37 @@ class MeetupsBaseTest(unittest.TestCase):
                              "images":["mig1.png", "mig2.png"],
                              "tags":["Tech", "Health"]
                             }
+        
+        self.post_meetup4 = {"topic":"Miguel Brings",
+                             "happenningOn":"16/02/2019",
+                             "location":"Nairobi",
+                             "images":["mig1.png", "mig2.png"],
+                             "tags":["Tech", "Health"]
+                            }
+
+        self.post_meetup5 = {"topic":"Andela Fellowship",
+                             "happenningOn":"16/02/2019",
+                             "location":"Nairobi",
+                             "images":["mig1.png", "mig2.png"],
+                             "tags":["Tech", "Health"]
+                            }
 
         self.rsvp_response1 = [{"Attending": "yes",
-                                "meetup": 1,
-                                "topic": "Scrum"}]
+                                "meetup": 4,
+                                "topic": "Miguel Brings"}]
+
+        self.rsvp_response2 = [{"Attending": "yes",
+                                "meetup": 5,
+                                "topic": "Andela Fellowship"}]
+
+        self.specific_meetup = [{
+                                "id": 5,
+                                "happenningOn": "16/02/2019",
+                                "location": "Nairobi",
+                                "tags": ["Tech","Health"],
+                                 "topic": "Andela Fellowship"
+                                }]
+                                                            
 
         self.meetup_topic_record = {"topic":"",
                             "happenningOn":"14/02/2019",
@@ -131,20 +158,6 @@ class TestMeetupsRecords(MeetupsBaseTest):
         self.assertEqual(result["status"], 201)
         self.assertEqual(result["data"], [{"location": "Thika","happenningOn": "14/02/2019","images": ["blair.png","tony.png"],"tags": ["Tech","Health"],"topic": "Scrum"}])
  
-    def test_user_get_specific_meetup(self):
-        self.client.post("api/v1/meetups", data = json.dumps(self.post_meetup1),headers={'x-access-token': self.token}, content_type = "application/json")
-        self.client.post("api/v1/meetups", data = json.dumps(self.post_meetup2),headers={'x-access-token': self.token},  content_type = "application/json")
-
-        response = self.client.get("api/v1/meetups/1", content_type = "application/json")
-        self.assertEqual(response.status_code, 200)
-
-        result = json.loads(response.data.decode('utf-8'))
-        self.assertEqual(result['status'], 200)
-        self.assertEqual(result['data'], [{"id": 1,
-                                           "location":"Thika",
-                                           "happenningOn":"14/02/2019",
-                                           "tags": ["Tech", "Health"],
-                                           "topic":"Scrum"}])
     
     def test_user_can_get_all_meetups_records(self):
         """
@@ -160,16 +173,7 @@ class TestMeetupsRecords(MeetupsBaseTest):
         self.assertEqual(result["status"], 200)
         # self.assertEqual(result["data"], self.meetups)
     
-    #tests fo user rsvp a response
-    def test_user_can_confirm_rsvp_response(self):
-        """
-        test user can post their attendance responses
-        """
-        self.client.post("api/v1/meetups", data = json.dumps(self.post_meetup1),headers={'x-access-token': self.token},  content_type = "application/json")
-        response = self.client.post("api/v1/meetups/1/rsvps/yes", content_type = "application/json")
-        self.assertEqual(response.status_code, 200)
-        result = json.loads(response.data.decode('utf-8'))
-        self.assertEqual(result['data'], self.rsvp_response1)
+
     
     #tests for meetup not set
     def test_no_meetup_topic_provided(self):
@@ -234,4 +238,49 @@ class TestMeetupsRecords(MeetupsBaseTest):
         self.assertEqual(response.status_code, 404)
         self.assertEqual(result["status"], 404)
         self.assertEqual(result["data"], "Meetup with id 50 not found")
+
+    def test_user_get_a_specific_meetup(self):
+        #self.token = self.admin_login
+        self.client.post("api/v1/meetups",
+                         data=json.dumps(self.post_meetup1),
+                         headers={'x-access-token': self.token},
+                         content_type="application/json")
+        self.client.post("api/v1/meetups",
+                         data=json.dumps(self.post_meetup2),
+                         headers={'x-access-token': self.token},
+                         content_type="application/json")
+        self.client.post("api/v1/meetups",
+                         data=json.dumps(self.post_meetup3),
+                         headers={'x-access-token': self.token},
+                         content_type="application/json")
+        self.client.post("api/v1/meetups",
+                         data=json.dumps(self.post_meetup4),
+                         headers={'x-access-token': self.token},
+                         content_type="application/json")
+        self.client.post("api/v1/meetups",
+                         data=json.dumps(self.post_meetup5),
+                         headers={'x-access-token': self.token},
+                         content_type="application/json")
+
+        response = self.client.get("api/v1/meetups/5",
+                                   content_type="application/json")
+        self.assertEqual(response.status_code, 200)
+        result = json.loads(response.data.decode('utf-8'))
+        self.assertEqual(result['status'], 200)
+        self.assertEqual(result['data'], self.specific_meetup)
+
+    def test_user_can_set_rsvp_response(self):
+        """
+        Tests to show a user can successfully confirm ther attendance status
+        """
+        #self.token = self.admin_login()
+        self.client.post("api/v1/meetups",
+                         data=json.dumps(self.post_meetup5),
+                         headers={'x-access-token': self.token},
+                         content_type="application/json")
+        response = self.client.post("api/v1/meetups/5/rsvps/yes",content_type="application/json")
+        self.assertEqual(response.status_code, 200)
+        result = json.loads(response.data.decode('utf-8'))
+        self.assertEqual(result['data'], self.rsvp_response2)
+
         
