@@ -18,7 +18,7 @@ class UserBaseTest(unittest.TestCase):
         self.client = self.app.test_client()
 
         self.signup_user1 = {"firstname":"Tony",
-                             "lastname": "Blair",
+                             "lastname": "Andela",
                              "username":"blairt001",
                              "email":"blairt37.dev@gmail.com",
                              "password": "Blairman1234",
