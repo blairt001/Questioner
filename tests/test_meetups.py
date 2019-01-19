@@ -284,11 +284,3 @@ class TestMeetupsRecords(MeetupsBaseTest):
         self.assertEqual(result['data'], self.rsvp_response2)
 
         
-    #tests meetup missing
-    def test_meetup_record_missing(self):
-        self.client.post("api/v1/meetups", data = json.dumps(self.post_meetup1), content_type = "application/json")
-        response = self.client.get("api/v1/meetups/50", content_type = "application/json")
-        result = json.loads(response.data.decode('utf-8'))
-        self.assertEqual(response.status_code, 404)
-        self.assertEqual(result["status"], 404)
-        self.assertEqual(result["data"], "Meetup not found")
