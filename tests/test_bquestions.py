@@ -35,11 +35,11 @@ class QuestionBaseTest(unittest.TestCase):
                            "password":"Blairman1234"}
 
 
-        self.meetup = {"topic":"Dev",
-                       "happenningOn":"18/02/2019",
-                       "location":"Kisumu",
-                       "images":["tony1.png", "blair1.png"],
-                       "tags":["Wisdom", "Knowledge"]
+        self.meetup = {"topic":"Andela Fellowship",
+                       "happenningOn":"16/02/2019",
+                       "location":"Nairobi",
+                       "images":["mig1.png", "mig2.png"],
+                       "tags":["Tech", "Health"]
                       }
 
         self.post_question1 = {"title":"What is Dev?",

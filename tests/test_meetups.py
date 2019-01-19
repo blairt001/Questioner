@@ -212,16 +212,7 @@ class TestMeetupsRecords(MeetupsBaseTest):
         self.assertEqual(result["error"], 'provide the tags')
 
     #tests admin can delete a meetup record
-    def test_admin_can_delete_a_meetup(self):
-        #self.token = self.admin_login()
-        self.token = self.admin_login()
-        self.client.post("api/v1/meetups", data = json.dumps(self.post_meetup1),headers={'x-access-token': self.token}, content_type = "application/json")
-        response = self.client.delete("api/v1/meetups/1", headers={'x-access-token': self.token}, content_type = "application/json")
-        result = json.loads(response.data.decode('utf-8'))
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(result["status"], 200)
-        self.assertEqual(result["data"], "Deleted successfully")
-
+    
     def test_meetup_record_not_found(self):
         """
         Test response when a meetup is not found
