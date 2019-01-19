@@ -1,5 +1,4 @@
-[![Build Status](https://travis-ci.org/blairt001/Questioner.svg?branch=develop)](https://travis-ci.org/blairt001/Questioner)
-[![Maintainability](https://api.codeclimate.com/v1/badges/2a72a608512cb9809c24/maintainability)](https://codeclimate.com/github/blairt001/Questioner/maintainability)
+
 
 
 ## Heroku Link
