@@ -76,7 +76,7 @@ def token_required(f):
         if 'x-access-token' in request.headers:
             token = request.headers['x-access-token']
         if not token:
-            return jsonify({'message':"Access Token is missing"}), 401
+            return jsonify({'message':"Token is missing"}), 401
 
         try:
             data = jwt.decode(token, key)
@@ -117,3 +117,4 @@ def check_if_user_is_admin():
     if username['username'] != "blairtheadmin":
         return False
     return True
+

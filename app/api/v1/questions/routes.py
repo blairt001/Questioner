@@ -1,14 +1,17 @@
 """The users meetup routes"""
 
-from flask import jsonify, request
+from flask import jsonify, request , make_response, abort
 from app.admin.models import QuestionModel, QUESTIONS_LEN, MeetupModel, MEETUPS_LEN, CommentModel, COMMENTS_LEN
 from app.api.v1 import path_1
+from app.utils import token_required, decode_token
 
 @path_1.route("/meetups/<int:meetup_id>/questions", methods=['POST'])
-def create_question_record(meetup_id):
+@token_required
+def create_question_record(specific_user, meetup_id):
     try:
-        title = request.get_json()['title']
-        body = request.get_json()['body']
+        data = request.get_json()
+        title = data['title']
+        body = data['body']
 
     except:
         return jsonify({'status': 400,
@@ -21,7 +24,10 @@ def create_question_record(meetup_id):
     if not body:
         return jsonify({'status': 400,
                         'error': 'body field is required'})
-
+    meetup = MeetupModel.get_specific_meetup(meetup_id)
+    if not meetup:
+        abort(make_response(jsonify({
+            'status': 404, 'error':'Meetup with id {} not found'.format(meetup_id)})))
     question = QuestionModel(title=title,
                         body=body,
                         meetup_id=meetup_id)
@@ -34,7 +40,8 @@ def create_question_record(meetup_id):
                              "body": body}]}), 201
 #upvote a question
 @path_1.route("/questions/<int:question_id>/upvote", methods=['PATCH'])
-def upvote_question(question_id):
+@token_required
+def upvote_question(specific_question, question_id):
     """
     The upvote question route endpoint
     """
@@ -47,7 +54,8 @@ def upvote_question(question_id):
 
 #downvote a question
 @path_1.route("/questions/<int:question_id>/downvote", methods=['PATCH'])
-def downvote_question(question_id):
+@token_required
+def downvote_question(specific_user, question_id):
     """
     The downvote question route endpoint
     """
@@ -60,20 +68,29 @@ def downvote_question(question_id):
 
 #user should be able to post comment
 @path_1.route("/questions/<int:question_id>/comment", methods=['POST'])
-def user_comment_on_a_question(question_id):
+@token_required
+def user_comment_on_a_question(specific_user, question_id):
     """
     User post comment endpoint route
     """
     try:
-        comment = request.get_json()['comment']
+        data = request.get_json()
+        comment = data['comment']
     except KeyError:
-        abort(make_response(jsonify({'status': 400, 'error':'Check your json key. It is comment'})))
+        abort(make_response(jsonify({
+            'status': 400, 'error':'Check your json key. Should be comment'})))
+
+    username = decode_token()
+
     question = QuestionModel.get_question(question_id)
     if question:
         my_question = question[0]
-        my_question['comments'].append(comment)
+        comments = my_question['comments']
+        comments.append(comment)
+        comments.append(username)
         return jsonify({"status": 201, "data": my_question}), 201
-    return jsonify({'status': 404, 'error':'The question you are looking for is not found'}), 404
+    return jsonify({
+        'status': 404, 'error':'Question with id {} not found'.format(question_id)}), 404
 
 @path_1.route("/meetups/<int:meet_id>/questions", methods=['GET'])
 def get_user_get_all_questions_for_a_meetup(meet_id):

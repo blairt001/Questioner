@@ -13,6 +13,28 @@ class QuestionBaseTest(unittest.TestCase):
         self.app = create_app("testing")
         self.client = self.app.test_client()
 
+
+        self.signup_admin_user1 = {"firstname":"Tony",
+                             "lastname": "Andela",
+                             "username":"toniezah",
+                             "email":"blair1234@gmail.com",
+                             "password": "Blairman1234",
+                             "confirm_password":"Blairman1234"}
+
+        self.signup_admin_user2 = {"firstname":"Tony",
+                             "lastname": "Andela",
+                             "username":"fakeadmin",
+                             "email":"blair1234.dev@gmail.com",
+                             "password": "Blairman1234",
+                             "confirm_password":"Blairman1234"}
+
+        self.login_user1 = {"username":"toniezah",
+                           "password":"Blairman1234"}
+
+        self.login_user2 = {"username":"fakeadmin",
+                           "password":"Blairman1234"}
+
+
         self.meetup = {"topic":"Scrum",
                        "happenningOn":"14/02/2019",
                        "location":"Thika",
@@ -25,6 +47,9 @@ class QuestionBaseTest(unittest.TestCase):
 
         self.post_question2 = {"title":"What is JWT?",
                                "body":"I learnt more about JWT at Andela's bootcamp"}
+
+        self.post_question3 = {"title":"Hey Mehn?",
+                               "body":"It is just OK"}
 
         self.upvoted_question= {"body": "I really like how people talk about Andela's Scrum",
                                 "meetup_id": 1,
@@ -42,11 +67,13 @@ class QuestionBaseTest(unittest.TestCase):
         self.post_comment1 = {"comment":"Wow, I love every topic on scrum, the answer will help me alot"}
 
         self.question1_and_comment1 = {"body": "I really like how people talk about Andela's Scrum",
-                                     "comments": ["Wow, I love every topic on scrum, the answer will help me alot"],
+                                     "comments": ["Wow, I love every topic on scrum, the answer will help me alot", {"username" : "toniezah"}],
                                      "meetup_id": 1,
                                      "question_id": 1,
                                      "title": "What is Scrum?",
                                      "votes": 0}
+
+        self.token = ''
     #tear down tests                                 
     def tearDown(self):
         """Tperform final cleanup after tests run"""
@@ -57,12 +84,22 @@ class TestQuestionApiEndpoint(QuestionBaseTest):
     """
     Asserts whether the endpoints are working or not
     """
+    #create an empty token on admin login
+    def admin_login(self):
+        self.client.post(
+            'api/v1/auth/signup', data=json.dumps(self.signup_admin_user1),
+            content_type="application/json")
+        login = self.client.post(
+            'api/v1/auth/login', data=json.dumps(self.login_user1),
+            content_type="application/json")
+        data = json.loads(login.data.decode('utf-8'))
+        self.token = data["token"]
+        return self.token
+
     def test_user_can_post_a_question_to_meetup(self):
-        """
-        test to return success
-        """
+        self.token = self.admin_login()
         self.client.post("api/v1/meetups", data = json.dumps(self.meetup), content_type = "application/json")
-        response = self.client.post("api/v1/meetups/1/questions", data = json.dumps(self.post_question1), content_type = "application/json")
+        response = self.client.post("api/v1/meetups/1/questions", data = json.dumps(self.post_question1), headers={'x-access-token': self.token}, content_type = "application/json")
         self.assertEqual(response.status_code, 201)
         result = json.loads(response.data.decode('utf-8'))
         self.assertEqual(result['status'], 201)
@@ -71,44 +108,59 @@ class TestQuestionApiEndpoint(QuestionBaseTest):
                                            "title": "What is Scrum?"}])
 
     def test_upvote_question(self):
-        """
-        test a user can upvote a question
-        """
+        self.token = self.admin_login()
         self.client.post("api/v1/meetups", data = json.dumps(self.meetup), content_type = "application/json")
-        self.client.post("api/v1/meetups/1/questions", data = json.dumps(self.post_question1), content_type = "application/json")
-        response = self.client.patch("api/v1/questions/1/upvote", content_type = "application/json")
+        self.client.post("api/v1/meetups/1/questions", data = json.dumps(self.post_question1),headers={'x-access-token': self.token}, content_type = "application/json")
+        response = self.client.patch("api/v1/questions/1/upvote",headers={'x-access-token': self.token}, content_type = "application/json")
         self.assertEqual(response.status_code, 200)
 
         result = json.loads(response.data.decode('utf-8'))
         self.assertEqual(result['data'], self.upvoted_question)
 
     def test_downvote_question(self):
-        """
-        test a user can downvote a question
-        """
+        self.token = self.admin_login()
         self.client.post("api/v1/meetups", data = json.dumps(self.meetup), content_type = "application/json")
-        self.client.post("api/v1/meetups/1/questions", data = json.dumps(self.post_question1), content_type = "application/json")
-        response = self.client.patch("api/v1/questions/1/downvote", content_type = "application/json")
+        self.client.post("api/v1/meetups/1/questions", data = json.dumps(self.post_question1),headers={'x-access-token': self.token}, content_type = "application/json")
+        response = self.client.patch("api/v1/questions/1/downvote", headers={'x-access-token': self.token}, content_type = "application/json")
         self.assertEqual(response.status_code, 200)
 
         result = json.loads(response.data.decode('utf-8'))
         self.assertEqual(result['data'], self.downvoted_question)
-
+    
+    #tests if a user enters an invalid token
+    def user_enter_invalid_token(self):
+        token = "tonyblai63752752846728835278rtbxcavvv"
+        response = self.client.post("api/v1/meetups/1/questions",
+                                    data=json.dumps(self.post_question1),
+                                    headers={'x-access-token': token},
+                                    content_type="application/json")
+        self.assertEqual(response.status_code, 401)
+        result = json.loads(response.data.decode('utf-8'))
+        self.assertEqual(result['message'], "token is expired or invalid")
     #define test case for user posting comments
     def test_user_comment_on_a_question(self):
-        """
-        tests that a user can actually comment on a question
-        """
+        self.token = self.admin_login()
         self.client.post("api/v1/meetups", data = json.dumps(self.meetup), content_type = "application/json")
-        self.client.post("api/v1/meetups/1/questions", data = json.dumps(self.post_question1), content_type = "application/json")
-        response = self.client.post("api/v1/questions/1/comment", data = json.dumps(self.post_comment1), content_type = "application/json")
+        self.client.post("api/v1/meetups/1/questions", data = json.dumps(self.post_question1),headers={'x-access-token': self.token}, content_type = "application/json")
+        response = self.client.post("api/v1/questions/1/comment", data = json.dumps(self.post_comment1), headers={'x-access-token': self.token}, content_type = "application/json")
         self.assertEqual(response.status_code, 201)
         result = json.loads(response.data.decode("utf'8"))
         self.assertEqual(result['data'], self.question1_and_comment1)
 
     def test_get_all_questions_records(self):
+        self.token = self.admin_login()
         self.client.post("api/v1/meetups", data = json.dumps(self.meetup), content_type = "application/json")
-        self.client.post("api/v1/meetups/1/questions", data = json.dumps(self.post_question1), content_type = "application/json")
-        self.client.post("api/v1/meetups/1/questions", data = json.dumps(self.post_question2), content_type = "application/json")
+        self.client.post("api/v1/meetups/1/questions", data = json.dumps(self.post_question1), headers={'x-access-token': self.token}, content_type = "application/json")
+        self.client.post("api/v1/meetups/1/questions", data = json.dumps(self.post_question2),headers={'x-access-token': self.token}, content_type = "application/json")
         response = self.client.get("api/v1/meetups/1/questions", content_type = "application/json")
         self.assertEqual(response.status_code, 200)
+
+    #tests that an unregistered user can not post a question
+    def test_unregistered_user_not_post_question(self):
+        response = self.client.post("api/v1/meetups/1/questions",
+                                    data=json.dumps(self.post_question1),
+                                    headers={'x-access-token': self.token},
+                                    content_type="application/json")
+        self.assertEqual(response.status_code, 401)
+        result = json.loads(response.data.decode('utf-8'))
+        self.assertEqual(result['message'], "Token is missing")
