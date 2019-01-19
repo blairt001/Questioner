@@ -52,6 +52,9 @@ def admin_create_meetup():
 #user gets a specific meetup record
 @path_1.route("/meetups/<int:meetup_id>", methods=["GET"])
 def get_specific_meetup(meetup_id):
+    """
+     Get a speific meetup record
+    """
     meetup = MeetupModel.get_specific_meetup(meetup_id)
     if meetup:
         return jsonify({"status": 200, "data": meetup}), 200
@@ -73,17 +76,23 @@ def get_all_upcoming_meetups():
 @path_1.route("/meetups/<int:meetup_id>/rsvps/<resp>", methods=['POST'])
 def meetup_rsvp(meetup_id, resp):
     """
-    A user should be able to respond to a meetup request with yes, no or maybe
+    A user can respond to a meetup rsvp
     """
     if resp not in ["yes", "no", "maybe"]:
-        return jsonify({'status':400, 'error':'Response must be either yes , no or maybe'}), 400
-    meetup = MeetupModel.get_specific_meetup(meetup_id)
-    if meetup:
-        meetup = meetup[0]
-        return jsonify({'status':200, 'data':[{'meetup':meetup_id,
-                                               'topic':meetup['topic'],
-                                               'Attending':resp}]}), 200
+        return jsonify({
+            'status':400,
+            'error':'Response should be either yes, no or maybe'}), 400
 
+    meetup = MeetupModel.get_specific_meetup(meetup_id)
+    if not meetup:
+        return jsonify({
+            'status': 404,
+            'error':'Meetup with id {} not found'.format(meetup_id)}), 404
+
+    meetup = meetup[0]
+    return jsonify({'status':200, 'data':[{'meetup':meetup_id,
+                                           'topic':meetup['topic'],
+                                           'Attending':resp}]}), 200 
 #admin delete meetup
 @path_1.route("/meetups/<int:meetup_id>", methods=['DELETE'])
 def admin_delete_a_meetup(meetup_id):

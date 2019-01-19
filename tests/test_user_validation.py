@@ -122,3 +122,4 @@ class TestValidations(ValidationsBaseTest):
         self.assertEqual(response.status_code, 400)
         result = json.loads(response.data.decode('utf-8'))
         self.assertEqual(result['error'],"Password should contain a number(0-9)")
+        
