@@ -4,13 +4,15 @@ The admin meetup model
 #import date
 from datetime import datetime
 
-#assign meetups_len, questions_len, comments_len and users_len to an empty list
+# assign meetups_len, questions_len, comments_len and users_len to an empty list
 MEETUPS_LEN = []
 QUESTIONS_LEN = []
 COMMENTS_LEN = []
 USERS_LEN = []
 
-#create the meetup model class
+# create the meetup model class
+
+
 class MeetupModel:
     def __init__(self, topic, happenningOn, location, images, tags):
         """
@@ -44,7 +46,7 @@ class MeetupModel:
         """
         return [MeetupModel.to_json(meetup) for meetup in MEETUPS_LEN]
 
-    #delete a specific meetup
+    # delete a specific meetup
     @staticmethod
     def delete_specific_meetup(meet_id):
         found = None
@@ -56,10 +58,10 @@ class MeetupModel:
                 found = False
         return found
 
-    #staticmethod decorator
-    #convert the meetup record to JSON format
-    #let the dict be readable
-    #Ignore images and created_at
+    # staticmethod decorator
+    # convert the meetup record to JSON format
+    # let the dict be readable
+    # Ignore images and created_at
     @staticmethod
     def to_json(meetup):
         return {
@@ -69,6 +71,7 @@ class MeetupModel:
             "location": meetup.location,
             "tags": meetup.tags,
         }
+
 
 class QuestionModel:
     def __init__(self, title, body, meetup_id):
@@ -102,6 +105,7 @@ class QuestionModel:
             "body": question.body,
             "comments": question.comments
         }
+
     @staticmethod
     def get_question(quiz_id):
         """
@@ -115,7 +119,9 @@ class QuestionModel:
         user get all questions asked for the meetup
         """
         return [QuestionModel.to_json(question) for question in QUESTIONS_LEN if question.meetup_id == meeting_id]
-#Comment model class
+# Comment model class
+
+
 class CommentModel:
     """
     This is the model class for holding comment fields
@@ -123,7 +129,7 @@ class CommentModel:
 
     def __init__(self, comment, question_id):
         self.comment = comment
-        self.comment_id = len(COMMENTS)+1
+        self.comment_id = len(COMMENTS_LEN)+1
         self.question_id = question_id
 
     def save_comment(self):
@@ -132,15 +138,15 @@ class CommentModel:
         """
         COMMENTS_LEN.append(self)
 
-    
-    @staticmethod    #module level function
+    @staticmethod  # module level function
     def to_json(comment):
         """
         Convert the comment object to json, a readable dict
         """
-        return {"comment":comment.comment,
-                "comment_id":comment.comment_id,
-                "question_id":comment.question}
+        return {"comment": comment.comment,
+                "comment_id": comment.comment_id,
+                "question_id": comment.question}
+
 
 class UserModel:
     """
@@ -161,19 +167,19 @@ class UserModel:
         self.password = password
         self.is_admin = False
 
-    #after sign-up save the user to the created dict , USERS_LEN
+    # after sign-up save the user to the created dict , USERS_LEN
     def save_user(self):
         """
         Add a new user to the users store
         """
         USERS_LEN.append(self)
 
-    #lets check the data store for any user
+    # lets check the data store for any user
     @staticmethod
     def query_users(username, password):
         return [UserModel.to_json(user) for user in USERS_LEN if user.username == username and user.password == password]
 
-    #return a json data , a readable dictionary object, including the date user was registered
+    # return a json data , a readable dictionary object, including the date user was registered
     @staticmethod
     def to_json(user):
         return {"firstname": user.firstname,
@@ -181,7 +187,5 @@ class UserModel:
                 "username": user.username,
                 "email": user.email,
                 "password": user.password,
-       
-             "registered_on": user.registered_on,}
-    
 
+                "registered_on": user.registered_on, }
