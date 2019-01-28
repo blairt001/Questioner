@@ -18,18 +18,18 @@ Questioner is a crowd-source questions for a meetup. It helps the meetup organiz
 
 ## Questioner API Endpoints
 
-| Method        |       Endpoint                              |         Description                           |
-| ------------- |       -------------                         |         -------------                         |
-| `GET`         | `/api/v1/meetups/upcoming`                  |   Gets all meetups records                    |
-| `GET`         | `/api/v1/meetups/<meetup-id>`               |   Get a specific meetup record                |
-| `POST`        | `/api/v1/meetups`                           |   Create a meetup record                      |
-| `POST`        | `/api/v1/questions`                         |   Create a question record                    |
-| `POST`        | `/api/v1/users/signup`                |   Registers a user                             |
-| `POST`        | `/api/v1/users/login`                       |   Sign in a User                              |
-| `POST`        | `/api/v1/meetups/<meetup-id/rsvps>`         |   User respond to a meetup                    |
-| `PATCH`       | `/api/v1/questions/<questions-id>/upvote`   |   vote on a meetup question                   |
-| `PATCH`       | `/api/v1/questions/<questions-id/downvote`  |   vote on a meetup question                   |
-|
+| Method  | Endpoint                                   | Description                  |
+| ------- | ------------------------------------------ | ---------------------------- |
+| `GET`   | `/api/v1/meetups/upcoming`                 | Gets all meetups records     |
+| `GET`   | `/api/v1/meetups/<meetup-id>`              | Get a specific meetup record |
+| `POST`  | `/api/v1/meetups`                          | Create a meetup record       |
+| `POST`  | `/api/v1/questions`                        | Create a question record     |
+| `POST`  | `/api/v1/users/signup`                     | Registers a user             |
+| `POST`  | `/api/v1/users/login`                      | Sign in a User               |
+| `POST`  | `/api/v1/meetups/<meetup-id/rsvps>`        | User respond to a meetup     |
+| `PATCH` | `/api/v1/questions/<questions-id>/upvote`  | vote on a meetup question    |
+| `PATCH` | `/api/v1/questions/<questions-id/downvote` | vote on a meetup question    |
+|         |
 
 
 # Setting up your system
@@ -42,7 +42,10 @@ Clone the repository :
 
 `git clone https://github.com/blairt001/Questioner.git`
 
+
 cd into the repository
+
+Set up Virtualenv: `virtualenv venv`
 
 Activate virtualenv: `source venv/bin/activate`
 
