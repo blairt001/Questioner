@@ -89,5 +89,5 @@ Use [Postman](https://www.getpostman.com/downloads/)
 [Andela](https://andela.com/)
 
 ## Developer
-Tony B.
+Tony Blair.
 
